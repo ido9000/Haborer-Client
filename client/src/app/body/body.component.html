@@ -1,3 +1,5 @@
 <div class="body">
-  <div>here will be the tableeee</div>
+  <welcome-message class="welcomeDiv" *ngIf="!selected" ></welcome-message>
+  <top-menu class="topMenuDiv" *ngIf="selected" ></top-menu>
+  <app-table class="tableDiv" *ngIf="selected" ></app-table>
 </div>

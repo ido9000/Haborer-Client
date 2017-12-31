@@ -7,6 +7,9 @@ import { TitleBarComponent } from './title-bar/title-bar.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { BodyComponent } from './body/body.component';
 import { TooltipOptionsComponent } from './tooltip-options/tooltip-options.component';
+import { TableComponent } from './table/table.component';
+import { WelcomeMessageComponent } from './welcome-message/welcome-message.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { TooltipOptionsComponent } from './tooltip-options/tooltip-options.compo
     TitleBarComponent,
     SideNavComponent,
     BodyComponent,
-    TooltipOptionsComponent
+    TooltipOptionsComponent,
+    TableComponent,
+    WelcomeMessageComponent,
+    TopMenuComponent
   ],
   imports: [
     BrowserModule,
