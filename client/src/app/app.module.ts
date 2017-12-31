@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { BodyComponent } from './body/body.component';
+import { TooltipOptionsComponent } from './tooltip-options/tooltip-options.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { BodyComponent } from './body/body.component';
     AppComponent,
     TitleBarComponent,
     SideNavComponent,
-    BodyComponent
+    BodyComponent,
+    TooltipOptionsComponent
   ],
   imports: [
     BrowserModule,
