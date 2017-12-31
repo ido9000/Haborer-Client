@@ -1,0 +1,16 @@
+.sideNav{
+  height: 100%;
+  width: 30%;
+  background-color: blue;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.topImage {
+  /*flex-grow: 4;*/
+}
+
+.button {
+  /*flex-grow: 1;*/
+}
