@@ -9,20 +9,22 @@ export class HttpService {
   constructor(private http:HttpClient) { }
 
   getListOfStores() {
+    // let stores:storeModule[] =
     this.http.get<storeModule>(this.serverAddress).subscribe(
       data => {
-        console.log("User Login: " + data.storeId);
+        console.log("storeId: " + data.storeId);
       },
       err => {
         console.log("Error occured.")
       }
     );
+    // return stores;
   }
 
   getStoreContent() {
     this.http.get<itemModule>(this.serverAddress).subscribe(
       data => {
-        console.log("User itemId: " + data.itemId);
+        console.log("itemId: " + data.itemId);
         console.log("itemName: " + data.itemName);
         console.log("dateAdded: " + data.dateAdded);
         console.log("itemCategory: " + data.itemCategory);
@@ -35,30 +37,56 @@ export class HttpService {
   }
 
   getAllMyRequests() {
-    // this.http.get<requestModule>(this.serverAddress).subscribe(
-    //   data => {
-    //     console.log("User itemId: " + data.itemId);
-    //     console.log("itemName: " + data.itemName);
-    //     console.log("dateAdded: " + data.dateAdded);
-    //     console.log("itemCategory: " + data.itemCategory);
-    //     console.log("squadron: " + data.squadron);
-    //   },
-    //   err => {
-    //     console.log("Error occured.")
-    //   }
-    // );
+    this.http.get<requestModule>(this.serverAddress).subscribe(
+      data => {
+        console.log("id: " + data.id);
+        console.log("status: " + data.status);
+        console.log("fromSquadron: " + data.fromSquadron);
+        console.log("toSquadron: " + data.toSquadron);
+        console.log("fDate: " + data.fDate);
+        console.log("tDate: " + data.tDate);
+        console.log("comments: " + data.comments);
+        console.log("item: " + data.item);
+        console.log("requestRespond: " + data.requestRespond);
+      },
+      err => {
+        console.log("Error occured.")
+      }
+    );
   }
 
   getOthersRequstFromMe() {
-
+    this.http.get<requestModule>(this.serverAddress).subscribe(
+      data => {
+        console.log("id: " + data.id);
+        console.log("status: " + data.status);
+        console.log("fromSquadron: " + data.fromSquadron);
+        console.log("toSquadron: " + data.toSquadron);
+        console.log("fDate: " + data.fDate);
+        console.log("tDate: " + data.tDate);
+        console.log("comments: " + data.comments);
+        console.log("item: " + data.item);
+        console.log("requestRespond: " + data.requestRespond);
+      },
+      err => {
+        console.log("Error occured.")
+      }
+    );
   }
 
 
-  postNewRequest(requestStatus:string) {
+  postNewRequest(request:requestModule) {
     this.http.post(this.serverAddress,
       {
-        "status": requestStatus,
-        "items": "TEST"
+        "id: " :request.id,
+        "status: " : request.status,
+        "fromSquadron: " : request.fromSquadron,
+        "toSquadron: " : request.toSquadron,
+        "fDate: " : request.fDate,
+        "tDate: " : request.tDate,
+        "comments: " : request.comments,
+        "item: " : request.item,
+        "requestRespond: " : request.requestRespond
 
       })
       .subscribe(
@@ -74,15 +102,30 @@ export class HttpService {
         });
   }
 
-  postCancelRequest() {
-
-  }
-
-  postEditRequest(requestStatus:string) {
+  postCancelRequest(request:requestModule) {
     this.http.post(this.serverAddress,
       {
-        "status": requestStatus,
+        "id: " :request.id,
+        "status: " : request.status
+      })
+      .subscribe(
+        (val) => {
+          console.log("POST call successful value returned in body",
+            val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+  }
 
+  postEditRequest(request:requestModule) {
+    this.http.post(this.serverAddress,
+      {
+        "id: " :request.id,
+        "status": request.status
       })
       .subscribe(
         (val) => {
@@ -99,15 +142,13 @@ export class HttpService {
 
 
 
-  postNewItem() {
+  postNewItem(item:itemModule) {
     this.http.post(this.serverAddress,
       {
-        "status": "1",
-        "itemId": "1",
-        "itemName": "1",
-        "itemCategory": "1",
-        "dateAdded": "1",
-        "squadron": "1"
+        "itemName": item.itemName,
+        "itemCategory": item.itemCategory,
+        "dateAdded": item.dateAdded,
+        "squadron": item.squadron
       })
       .subscribe(
         (val) => {
@@ -122,12 +163,44 @@ export class HttpService {
         });
   }
 
-  postCancelItem() {
-
+  postCancelItem(item:itemModule) {
+    this.http.post(this.serverAddress,
+      {
+        "itemId": item.itemId
+      })
+      .subscribe(
+        (val) => {
+          console.log("POST call successful value returned in body",
+            val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
   }
 
-  postEditItem() {
-
+  postEditItem(item:itemModule) {
+    this.http.post(this.serverAddress,
+      {
+        "itemId": item.itemId,
+        "itemName": item.itemName,
+        "itemCategory": item.itemCategory,
+        "dateAdded": item.dateAdded,
+        "squadron": item.squadron
+      })
+      .subscribe(
+        (val) => {
+          console.log("POST call successful value returned in body",
+            val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
   }
 
 

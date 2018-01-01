@@ -14,8 +14,6 @@ export class AppComponent {
     // this.http.get("10.160.3.243:8080/Haborer/Rest").subscribe(data=> {console.log(data)});
     this.http.post("localhost:8080/HaborerService/Sqadron/AddItem",
       {
-        "status": "1",
-        "itemId": "1",
         "itemName": "1",
         "itemCategory": "1",
         "dateAdded": "1",
