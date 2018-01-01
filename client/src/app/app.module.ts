@@ -13,7 +13,8 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
 
-
+import {HttpService} from "./http.service";
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
