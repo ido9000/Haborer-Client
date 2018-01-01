@@ -9,7 +9,7 @@ export class HttpService {
   constructor(private http:HttpClient) { }
 
   getListOfStores() {
-    // let stores:storeModule[] =
+     let stores:storeModule[];
     this.http.get<storeModule>(this.serverAddress).subscribe(
       data => {
         console.log("storeId: " + data.storeId);
@@ -18,7 +18,7 @@ export class HttpService {
         console.log("Error occured.")
       }
     );
-    // return stores;
+     return stores;
   }
 
   getStoreContent() {

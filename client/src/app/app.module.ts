@@ -10,6 +10,8 @@ import { TooltipOptionsComponent } from './tooltip-options/tooltip-options.compo
 import { TableComponent } from './table/table.component';
 import { WelcomeMessageComponent } from './welcome-message/welcome-message.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
+import {HttpService} from "./http.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -25,9 +27,10 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
