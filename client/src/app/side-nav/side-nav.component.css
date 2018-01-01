@@ -1,16 +1,64 @@
 .sideNav{
+  width: 400px;
   height: 100%;
-  width: 30%;
-  background-color: blue;
   display:flex;
   flex-direction: column;
   justify-content: center;
+  background-color:#444;
 }
 
 .topImage {
-  /*flex-grow: 4;*/
+
 }
 
 .button {
-  /*flex-grow: 1;*/
+  background-color: #777;
+  border: none;
+  color:white;
+  padding: 5% 5%;
+  font-size: 20px;
+  transition-duration: 0.2s;
+  outline: 0;
+}
+
+.menuButton{
+  border: none;
+  background-color:#444;
+  color:white;
+  padding: 5% 5%;
+  font-size: 20px;
+}
+
+.button:hover {
+  background-color: #3A3A3A;
+  cursor: pointer;
+}
+
+.button:active {
+  border:none;
+  outline:none;
+  outline: 0;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100%;
+  background-color:#3A3A3A;
+  color: #fff;
+  text-align: center;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 0%;
+  right: 100%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

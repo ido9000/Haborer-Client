@@ -1,0 +1,8 @@
+.tooltipOption {
+  padding: 5% 5%;
+  font-size: 20px;
+}
+
+.tooltipOption:hover {
+  background-color: darkgrey;
+}
