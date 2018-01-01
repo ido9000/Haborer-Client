@@ -110,7 +110,14 @@ export class HttpService {
     this.http.post(this.config.serverAddress,
       {
         "id: " :request.id,
-        "status: " : request.status
+        "status: " : request.status,
+        "fromSquadron: " : request.fromSquadron,
+        "toSquadron: " : request.toSquadron,
+        "fDate: " : request.fDate,
+        "tDate: " : request.tDate,
+        "comments: " : request.comments,
+        "item: " : request.item,
+        "requestRespond: " : request.requestRespond
       }, this.config.options)
       .subscribe(
         (val) => {
@@ -129,7 +136,14 @@ export class HttpService {
     this.http.post(this.config.serverAddress,
       {
         "id: " :request.id,
-        "status": request.status
+        "status: " : request.status,
+        "fromSquadron: " : request.fromSquadron,
+        "toSquadron: " : request.toSquadron,
+        "fDate: " : request.fDate,
+        "tDate: " : request.tDate,
+        "comments: " : request.comments,
+        "item: " : request.item,
+        "requestRespond: " : request.requestRespond
       }, this.config.options)
       .subscribe(
         (val) => {
@@ -170,7 +184,11 @@ export class HttpService {
   postCancelItem(item:itemModule) {
     this.http.post(this.config.serverAddress,
       {
-        "itemId": item.itemId
+        "itemId": item.itemId,
+        "itemName": item.itemName,
+        "itemCategory": item.itemCategory,
+        "dateAdded": item.dateAdded,
+        "squadron": item.squadron
       }, this.config.options)
       .subscribe(
         (val) => {
