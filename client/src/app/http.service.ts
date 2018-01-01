@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable()
 export class HttpService {
 
   private serverAddress:string = "localhost:8080/HaborerService/";  //item request factory
+  private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
 
   constructor(private http:HttpClient) { }
 
@@ -88,7 +89,7 @@ export class HttpService {
         "item: " : request.item,
         "requestRespond: " : request.requestRespond
 
-      })
+      }, this.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -107,7 +108,7 @@ export class HttpService {
       {
         "id: " :request.id,
         "status: " : request.status
-      })
+      }, this.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -126,7 +127,7 @@ export class HttpService {
       {
         "id: " :request.id,
         "status": request.status
-      })
+      }, this.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -143,13 +144,13 @@ export class HttpService {
 
 
   postNewItem(item:itemModule) {
-    this.http.post(this.serverAddress,
+    this.http.post(this.serverAddress + "UserService/Squadron/AddItem",
       {
         "itemName": item.itemName,
         "itemCategory": item.itemCategory,
         "dateAdded": item.dateAdded,
         "squadron": item.squadron
-      })
+      }, this.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -167,7 +168,7 @@ export class HttpService {
     this.http.post(this.serverAddress,
       {
         "itemId": item.itemId
-      })
+      }, this.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -189,7 +190,7 @@ export class HttpService {
         "itemCategory": item.itemCategory,
         "dateAdded": item.dateAdded,
         "squadron": item.squadron
-      })
+      }, this.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
