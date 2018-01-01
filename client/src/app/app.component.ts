@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers,RequestOptions} from '@angular/http';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -8,19 +9,18 @@ import { Http, Response } from '@angular/http';
 })
 export class AppComponent {
   title = 'app';
+  private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
 
-  constructor (private http: Http) {
+  constructor (private http: HttpClient) {
 
     // this.http.get("10.160.3.243:8080/Haborer/Rest").subscribe(data=> {console.log(data)});
-    this.http.post("localhost:8080/HaborerService/Sqadron/AddItem",
+    this.http.post("http://localhost:8080/Haborer-Service/UserService/Squadron/AddItem",
       {
-        "status": "1",
-        "itemId": "1",
         "itemName": "1",
         "itemCategory": "1",
-        "dateAdded": "1",
-        "squadron": "1"
-      })
+        "squadron": "1",
+        "itemMakat":"1"
+      }, this.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
