@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Configuration} from "./configuration-file";
 
 @Injectable()
 export class HttpService {
 
-  private serverAddress:string = "localhost:8080/HaborerService/";  //item request factory
-  private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
+  // private serverAddress:string = "localhost:8080/HaborerService/";  //item request factory
+  // private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
+
+  private config = new Configuration();
 
   constructor(private http:HttpClient) { }
 
   getListOfStores() {
      let stores:storeModule[];
-    this.http.get<storeModule>(this.serverAddress).subscribe(
+    this.http.get<storeModule>(this.config.serverAddress).subscribe(
       data => {
         console.log("storeId: " + data.storeId);
       },
@@ -23,7 +26,7 @@ export class HttpService {
   }
 
   getStoreContent() {
-    this.http.get<itemModule>(this.serverAddress).subscribe(
+    this.http.get<itemModule>(this.config.serverAddress).subscribe(
       data => {
         console.log("itemId: " + data.itemId);
         console.log("itemName: " + data.itemName);
@@ -38,7 +41,7 @@ export class HttpService {
   }
 
   getAllMyRequests() {
-    this.http.get<requestModule>(this.serverAddress).subscribe(
+    this.http.get<requestModule>(this.config.serverAddress).subscribe(
       data => {
         console.log("id: " + data.id);
         console.log("status: " + data.status);
@@ -57,7 +60,7 @@ export class HttpService {
   }
 
   getOthersRequstFromMe() {
-    this.http.get<requestModule>(this.serverAddress).subscribe(
+    this.http.get<requestModule>(this.config.serverAddress).subscribe(
       data => {
         console.log("id: " + data.id);
         console.log("status: " + data.status);
@@ -77,7 +80,7 @@ export class HttpService {
 
 
   postNewRequest(request:requestModule) {
-    this.http.post(this.serverAddress,
+    this.http.post(this.config.serverAddress,
       {
         "id: " :request.id,
         "status: " : request.status,
@@ -89,7 +92,7 @@ export class HttpService {
         "item: " : request.item,
         "requestRespond: " : request.requestRespond
 
-      }, this.options)
+      }, this.config.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -104,11 +107,11 @@ export class HttpService {
   }
 
   postCancelRequest(request:requestModule) {
-    this.http.post(this.serverAddress,
+    this.http.post(this.config.serverAddress,
       {
         "id: " :request.id,
         "status: " : request.status
-      }, this.options)
+      }, this.config.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -123,11 +126,11 @@ export class HttpService {
   }
 
   postEditRequest(request:requestModule) {
-    this.http.post(this.serverAddress,
+    this.http.post(this.config.serverAddress,
       {
         "id: " :request.id,
         "status": request.status
-      }, this.options)
+      }, this.config.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -144,13 +147,13 @@ export class HttpService {
 
 
   postNewItem(item:itemModule) {
-    this.http.post(this.serverAddress + "UserService/Squadron/AddItem",
+    this.http.post(this.config.serverAddress + "UserService/Squadron/AddItem",
       {
         "itemName": item.itemName,
         "itemCategory": item.itemCategory,
         "dateAdded": item.dateAdded,
         "squadron": item.squadron
-      }, this.options)
+      }, this.config.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -165,10 +168,10 @@ export class HttpService {
   }
 
   postCancelItem(item:itemModule) {
-    this.http.post(this.serverAddress,
+    this.http.post(this.config.serverAddress,
       {
         "itemId": item.itemId
-      }, this.options)
+      }, this.config.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
@@ -183,14 +186,14 @@ export class HttpService {
   }
 
   postEditItem(item:itemModule) {
-    this.http.post(this.serverAddress,
+    this.http.post(this.config.serverAddress,
       {
         "itemId": item.itemId,
         "itemName": item.itemName,
         "itemCategory": item.itemCategory,
         "dateAdded": item.dateAdded,
         "squadron": item.squadron
-      }, this.options)
+      }, this.config.options)
       .subscribe(
         (val) => {
           console.log("POST call successful value returned in body",
