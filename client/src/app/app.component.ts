@@ -18,24 +18,24 @@ export class AppComponent {
 
     // let head = new Headers({ 'Content-Type': 'application/json' });
     // let options = new RequestOptions({ headers: head });
-    this.http.post("localhost:8080/HaborerService/Sqadron/AddItem",
-      JSON.stringify({
-        "itemName": "1",
-        "itemCategory": "1",
-        "dateAdded": "1",
-        "squadron": "1"
-      }))
-      .subscribe(
-        (val) => {
-          console.log("POST call successful value returned in body",
-            val);
-        },
-        response => {
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-        });
+    // this.http.post("localhost:8080/HaborerService/Sqadron/AddItem",
+    //   JSON.stringify({
+    //     "itemName": "1",
+    //     "itemCategory": "1",
+    //     "dateAdded": "1",
+    //     "squadron": "1"
+    //   }))
+    //   .subscribe(
+    //     (val) => {
+    //       console.log("POST call successful value returned in body",
+    //         val);
+    //     },
+    //     response => {
+    //       console.log("POST call in error", response);
+    //     },
+    //     () => {
+    //       console.log("The POST observable is now completed.");
+    //     });
 
 
 

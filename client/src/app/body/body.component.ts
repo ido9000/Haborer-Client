@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {TooltipOptionsComponent} from "../tooltip-options/tooltip-options.component";
 
 @Component({
   selector: 'body',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BodyComponent implements OnInit {
 
-  selected = true;
+  @Input() selected: boolean ;
+  // selected = false;
 
   constructor() {
 
@@ -15,5 +17,10 @@ export class BodyComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  ngOnChange() {
+    this.selected
+  }
+
 
 }

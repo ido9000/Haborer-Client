@@ -1,17 +1,32 @@
 <table>
+
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Age</th>
+    <th>itemId</th>
+    <th>itemName</th>
+    <th>itemCategory</th>
+    <th>dateAdded</th>
+    <th>squadron</th>
   </tr>
+
+  <!--TODO: organize in the order-->
+  <tr *ngFor="let r of rows">
+    <td *ngFor="let d of data">
+      {{r}} +',' +{{d}}
+    </td>
+  </tr>
+
   <tr>
     <td>Jill</td>
     <td>Smith</td>
+    <td>50</td>
+    <td>50</td>
     <td>50</td>
   </tr>
   <tr>
     <td>Eve</td>
     <td>Jackson</td>
+    <td>94</td>
+    <td>94</td>
     <td>94</td>
   </tr>
 </table>
