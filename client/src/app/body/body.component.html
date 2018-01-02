@@ -1,5 +1,5 @@
 <div class="body">
-  <welcome-message class="welcomeDiv" *ngIf="bodyselected=='welcome'" ></welcome-message>
+  <welcome-message class="welcomeDiv" [hidden]="!firstOpen" ></welcome-message>
   <!--<top-menu class="topMenuDiv" *ngIf="selected" ></top-menu>-->
-  <app-table class="tableDiv" *ngIf="bodyselected != 'welcome'" ></app-table>
+  <app-table class="tableDiv" *ngIf="getBody() == 'store1'" ></app-table>
 </div>
