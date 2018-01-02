@@ -12,6 +12,7 @@ import { WelcomeMessageComponent } from './welcome-message/welcome-message.compo
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
+import {BodyStates} from "./redux/bodyStates";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpModule,
     HttpClientModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, BodyStates],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
