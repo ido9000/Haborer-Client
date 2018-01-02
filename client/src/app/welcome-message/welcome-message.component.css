@@ -1,4 +1,5 @@
 .welcomeMessage {
   color: darkslategrey;
   font-size: 40px;
+  /*align-self: center;*/
 }

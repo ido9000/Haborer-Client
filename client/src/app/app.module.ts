@@ -10,9 +10,10 @@ import { TooltipOptionsComponent } from './tooltip-options/tooltip-options.compo
 import { TableComponent } from './table/table.component';
 import { WelcomeMessageComponent } from './welcome-message/welcome-message.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
-
 import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
+import {BodyStates} from "./redux/bodyStates";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpModule,
     HttpClientModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, BodyStates],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
