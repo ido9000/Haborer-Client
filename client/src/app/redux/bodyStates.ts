@@ -11,4 +11,8 @@ export class BodyStates {
     this.messageSource.next(store);
   }
 
+  getStore() {
+    return this.messageSource.getValue();
+  }
+
 }
