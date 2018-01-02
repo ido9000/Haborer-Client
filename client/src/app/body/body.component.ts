@@ -1,32 +1,21 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {TooltipOptionsComponent} from "../tooltip-options/tooltip-options.component";
+import {Component, OnInit} from '@angular/core';
 import {BodyStates} from "../redux/bodyStates";
 
 @Component({
   selector: 'body',
   templateUrl: './body.component.html',
-  styleUrls: ['./body.component.css']/*,
-  directive: [TooltipOptionsComponent]*/
+  styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
 
-   // @Input() selected: boolean ;
-   // selected = false;
-  // bodys;
   bodyselected:string;
 
   constructor(private body:BodyStates) {
-    //body.setStore(false);
-    // this.bodys=body
+
   }
 
   ngOnInit() {
-    this.body.bodyselected.subscribe(bodyselected => this.bodyselected == bodyselected);
+    this.body.bodyselected.arguments(bodyselected => this.bodyselected == bodyselected);
   }
-
-  // ngOnChange() {
-  //   this.bodys.getStore();
-  // }
-
 
 }
