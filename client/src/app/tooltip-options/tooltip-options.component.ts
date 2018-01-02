@@ -15,7 +15,7 @@ export class TooltipOptionsComponent implements OnInit {
 
   bodyselected:string;
 
-  constructor(private httpService: HttpService/*, private bodyComponent: BodyComponent*/ , private body:BodyStates) {
+  constructor(private httpService: HttpService, private body:BodyStates) {
 
   }
 
