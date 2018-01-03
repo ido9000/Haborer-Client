@@ -1,32 +1,64 @@
 <table>
 
   <tr>
+    <th *ngIf="currentUser.storeId=='store1'">הזמן</th>
+    <th *ngIf="currentUser.storeId=='store1'">כמות להזמנה</th>
     <th>itemId</th>
     <th>itemName</th>
     <th>itemCategory</th>
     <th>dateAdded</th>
     <th>squadron</th>
+    <th>makat</th>
+    <th>kamut</th>
+    <th *ngIf="currentUser.storeId!='store1'">מחיקה</th>
   </tr>
 
-  <!--TODO: organize in the order-->
-  <tr *ngFor="let r of rows">
-    <td *ngFor="let d of data">
-      {{r}} +',' +{{d}}
+  <tr *ngFor="let i of items">
+
+    <td *ngIf="currentUser.storeId=='store1'">
+      <input type="checkbox" name="vehicle" value="i.itemId">
     </td>
+
+    <td  *ngIf="currentUser.storeId=='store1'">
+      <input *ngIf="i.kamut>0" list="browsers" name="kamut">
+      <datalist *ngIf="i.kamut>0" id="browsers">
+        <option *ngFor="let n of getArrayOfNumbers(i.kamut)" [value]="n">
+        </option>
+      </datalist>
+    </td>
+
+    <td>{{i.itemId}}</td>
+    <td>{{i.itemName}}</td>
+    <td>{{i.itemCategory}}</td>
+    <td>{{i.dateAdded}}</td>
+    <td>{{i.squadron}}</td>
+    <td>{{i.makat}}</td>
+
+    <td *ngIf="currentUser.storeId=='store1'">{{i.kamut}}</td>
+    <td *ngIf="currentUser.storeId!='store1'">
+      <input type="number" [value]="i.kamut" min="0" required *ngIf="i.makat==0">
+    </td>
+
+    <td *ngIf="currentUser.storeId!='store1'">
+      <button>X</button>
+    </td>
+
   </tr>
 
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-    <td>50</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-    <td>94</td>
-    <td>94</td>
-  </tr>
 </table>
+
+<br>
+<div class="moveRight" *ngIf="currentUser.storeId=='store1'">
+
+  <p>תאריך איסוף</p>
+  <input type="date">
+
+  <p>תאריך החזרה</p>
+  <input type="date">
+
+  <p>הערות</p>
+  <textarea class="comments" type="text"></textarea>
+</div>
+
+<!--<br>-->
+<input class="moveRight" type="submit" value="Submit" ><!--(click)="createNewRequest()">-->
