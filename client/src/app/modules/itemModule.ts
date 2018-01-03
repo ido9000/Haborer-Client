@@ -1,9 +1,9 @@
 interface itemModule {
-  itemId: string;
+  _id: string;
   itemName: string;
   itemCategory: string;
   dateAdded: string;
   squadron: string;
-  makat : string;
-  kamut : string;
+  itemMakat : string;
+  itemCount : string;
 }

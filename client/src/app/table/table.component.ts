@@ -11,19 +11,22 @@ export class TableComponent implements OnInit {
 
   currentUser: userModule = new dummyUser("store1");
 
-  items;//  = [new dummyItem("1","1","1","1","1", "9", "0"),
-          //  new dummyItem("2","2","2","2","2", "0", "4")];
+  items: any;
 
   bodyselected: string;
 
-  orderedItems:itemModule[]=[];
+  orderedItems:itemModule[];
 
   constructor(private httpService: HttpService, private body: BodyStates) {
+    this.orderedItems=[];
     this.items = httpService.getStoreContent(this.body.getStore());
+    this.items.subscribe(items => {
+      this.orderedItems = items;
+    });
   }
 
   ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
+    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
   }
 
   // createNewTable(storeContent) {

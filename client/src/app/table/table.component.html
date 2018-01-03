@@ -3,17 +3,15 @@
   <tr>
     <th *ngIf="currentUser.storeId=='store1'">הזמן</th>
     <th *ngIf="currentUser.storeId=='store1'">כמות להזמנה</th>
-    <th>itemId</th>
-    <th>itemName</th>
-    <th>itemCategory</th>
-    <th>dateAdded</th>
-    <th>squadron</th>
-    <th>makat</th>
-    <th>kamut</th>
+    <th>שם מוצר</th>
+    <th>קטגוריה</th>
+    <th>תאריך הוספה</th>
+    <th>מק"ט</th>
+    <th>כמות</th>
     <th *ngIf="currentUser.storeId!='store1'">מחיקה</th>
   </tr>
 
-  <tr *ngFor="let i of items">
+  <tr *ngFor="let i of orderedItems">
 
     <td *ngIf="currentUser.storeId=='store1'">
       <input type="checkbox" name="vehicle" value="i.itemId">
@@ -27,12 +25,12 @@
       </datalist>
     </td>
 
-    <td>{{i.itemId}}</td>
     <td>{{i.itemName}}</td>
     <td>{{i.itemCategory}}</td>
     <td>{{i.dateAdded}}</td>
-    <td>{{i.squadron}}</td>
-    <td>{{i.makat}}</td>
+    <td>{{i.itemMakat}}</td>
+    <td>{{i.itemCount}}</td>
+
 
     <td *ngIf="currentUser.storeId=='store1'">{{i.kamut}}</td>
     <td *ngIf="currentUser.storeId!='store1'">
