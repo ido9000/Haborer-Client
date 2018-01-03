@@ -13,7 +13,6 @@ export class HttpService {
 
   getListOfStores() {
     return this.http.get<string[]>(this.config.serverAddress.concat('UserService/Sqaudron/GetAllSquadrons'));
-
   }
 
   getStoreContent(storeId) {
