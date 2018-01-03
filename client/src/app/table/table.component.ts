@@ -8,15 +8,15 @@ import {HttpService} from "../http.service";
 })
 export class TableComponent implements OnInit {
 
-  currentUser: userModule = new dummyUser("store2");
+  currentUser: userModule = new dummyUser("store1");
 
-  items  = [new dummyItem("1","1","1","1","1", "9", "0"),
-            new dummyItem("2","2","2","2","2", "0", "4")];
+  items;/*  = [new dummyItem("1","1","1","1","1", "9", "0"),
+            new dummyItem("2","2","2","2","2", "0", "4")];*/
 
   orderedItems:itemModule[]=[];
 
   constructor(private httpService: HttpService) {
-    //this.items = httpService.getStoreContent();
+    this.items = httpService.getStoreContent();
   }
 
   ngOnInit() {

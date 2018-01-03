@@ -16,8 +16,7 @@ export class BodyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.body.bodyselected.arguments(bodyselected => this.bodyselected == bodyselected);
-
+    this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
   }
 
   getBody() {

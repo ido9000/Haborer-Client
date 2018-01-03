@@ -11,21 +11,26 @@ import {BodyStates} from "../redux/bodyStates";
 })
 export class TooltipOptionsComponent implements OnInit {
 
-  stores  = [{storeId: "חנות 1"}, {storeId: "חנות 2"}];//storesArray;
+  stores;//  = [new dummyStore1(), new dummyStore2()];//storesArray;
 
   bodyselected:string;
 
   constructor(private httpService: HttpService, private body:BodyStates) {
-    //this.stores = httpService.getListOfStores();
+    this.stores = httpService.getListOfStores();
   }
 
   ngOnInit() {
-    this.body.bodyselected.arguments(bodyselected => this.bodyselected == bodyselected);
+    this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
   }
+
+  // showStore(s) {
+  //   this.body.setStore(s.storeId);
+  // }
 
   showStore() {
     this.body.setStore("store1");
   }
+
 
 }
 
@@ -33,11 +38,19 @@ export class TooltipOptionsComponent implements OnInit {
 
 //dummy data
 export class dummyStore1 implements storeModule {
-  storeId: string = "חנות 1";
+  storeId: string;
+
+  constructor(){
+    this.storeId = "חנות 1";
+  }
 }
 
 // let storesArray = [dummyStore1, dummyStore2];
 export class dummyStore2 implements storeModule {
-  storeId: string = "חנות 2";
+  storeId: string;
+
+  constructor(){
+    this.storeId = "חנות 2";
+  }
 }
 
