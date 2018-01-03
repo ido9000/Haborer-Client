@@ -20,19 +20,8 @@ export class HttpService {
 
   }
 
-  getStoreContent() {
-    this.http.get<itemModule>(this.config.serverAddress).subscribe(
-      data => {
-        console.log("itemId: " + data.itemId);
-        console.log("itemName: " + data.itemName);
-        console.log("dateAdded: " + data.dateAdded);
-        console.log("itemCategory: " + data.itemCategory);
-        console.log("squadron: " + data.squadron);
-      },
-      err => {
-        console.log("Error occured.")
-      }
-    );
+  getStoreContent(storeId) {
+    return this.http.get<itemModule[]>(this.config.serverAddress.concat('UserService/Squadron/').concat(storeId));
   }
 
   getAllMyRequests() {

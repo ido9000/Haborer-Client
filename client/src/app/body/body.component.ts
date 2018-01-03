@@ -21,7 +21,7 @@ export class BodyComponent implements OnInit {
 
   getBody() {
     if(this.firstOpen) {
-      this.firstOpen = false;
+      this.firstOpen = !this.firstOpen;
     }
       return this.body.getStore();
   }
