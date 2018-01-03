@@ -72,6 +72,11 @@ export class dummyItem implements itemModule {
 
 export class dummyUser implements userModule {
   storeId: string;
+  userName:string;
+  password:string;
+  _id:string;
+  firstName:string;
+  lastName:string;
 
   constructor(storeId){
     this.storeId =storeId;
