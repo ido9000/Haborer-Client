@@ -2,8 +2,8 @@
 <div class="tooltipOption">text 2</div>
 
 
-<!--<div *ngFor="let store of stores" class="tooltipOptions" style="padding:5% 5%; font-size: 20px;">-->
-  <!--<div ngClass="" class="tooltipOptions">-->
-    <!--{{store.storeId}}-->
-  <!--</div>-->
-<!--</div>-->
+<div> <!--class="tooltipOptions" style="padding:5% 5%; font-size: 20px;">-->
+  <div *ngFor="let s of stores" class="tooltipOptions">
+    {{s.storeId}}
+  </div>
+</div>

@@ -8,25 +8,12 @@
     <th>squadron</th>
   </tr>
 
-  <!--TODO: organize in the order-->
-  <tr *ngFor="let r of rows">
-    <td *ngFor="let d of data">
-      {{r}} +',' +{{d}}
-    </td>
+  <tr *ngFor="let i of items">
+    <td>{{i.itemId}}</td>
+    <td>{{i.itemName}}</td>
+    <td>{{i.itemCategory}}</td>
+    <td>{{i.dateAdded}}</td>
+    <td>{{i.squadron}}</td>
   </tr>
 
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-    <td>50</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-    <td>94</td>
-    <td>94</td>
-  </tr>
 </table>
