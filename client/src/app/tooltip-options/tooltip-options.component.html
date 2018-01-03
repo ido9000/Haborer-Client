@@ -2,7 +2,7 @@
 <!--<div class="tooltipOption">text 2</div>-->
 
 
-<div *ngFor="let s of stores" class="tooltipOption" (click)="showStore()">
-  {{s.storeId}}
+<div *ngFor="let s of storesArr" class="tooltipOption" (click)="showStore(s)">
+  {{s}}
 </div>
 
