@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
+import {BodyStates} from "../redux/bodyStates";
 
 @Component({
   selector: 'app-table',
@@ -10,16 +11,19 @@ export class TableComponent implements OnInit {
 
   currentUser: userModule = new dummyUser("store1");
 
-  items  = [new dummyItem("1","1","1","1","1", "9", "0"),
-            new dummyItem("2","2","2","2","2", "0", "4")];
+  items;//  = [new dummyItem("1","1","1","1","1", "9", "0"),
+          //  new dummyItem("2","2","2","2","2", "0", "4")];
+
+  bodyselected: string;
 
   orderedItems:itemModule[]=[];
 
-  constructor(private httpService: HttpService) {
-   // this.items = httpService.getStoreContent();
+  constructor(private httpService: HttpService, private body: BodyStates) {
+    this.items = httpService.getStoreContent(this.body.getStore());
   }
 
   ngOnInit() {
+    this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
   }
 
   // createNewTable(storeContent) {

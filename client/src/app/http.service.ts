@@ -20,7 +20,7 @@ export class HttpService {
 
   }
 
-  getStoreContent() {
+  getStoreContent(storeId) {
     this.http.get<itemModule>(this.config.serverAddress).subscribe(
       data => {
         console.log("itemId: " + data.itemId);
