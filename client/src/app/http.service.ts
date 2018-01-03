@@ -5,63 +5,43 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class HttpService {
-  stores : string[];
-  // private serverAddress:string = "localhost:8080/HaborerService/";  //item request factory
-  // private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
 
   private config = new Configuration();
 
   constructor(private http: HttpClient) {
-    this.stores = [];
   }
 
   getListOfStores() {
     return this.http.get<string[]>(this.config.serverAddress.concat('UserService/Sqaudron/GetAllSquadrons'));
-
   }
 
   getStoreContent(storeId) {
     return this.http.get<itemModule[]>(this.config.serverAddress.concat('UserService/Squadron/').concat(storeId));
   }
 
-  getAllMyRequests() {
-    this.http.get<requestModule>(this.config.serverAddress).subscribe(
-      data => {
-        console.log("id: " + data.id);
-        console.log("status: " + data.status);
-        console.log("fromSquadron: " + data.fromSquadron);
-        console.log("toSquadron: " + data.toSquadron);
-        console.log("fDate: " + data.fDate);
-        console.log("tDate: " + data.tDate);
-        console.log("comments: " + data.comments);
-        console.log("item: " + data.item);
-        console.log("requestRespond: " + data.requestRespond);
-      },
-      err => {
-        console.log("Error occured.")
-      }
-    );
+  getAllMyRequests(storeId) {
+    return this.http.get<requestModule>(this.config.serverAddress.concat('UserService/Squadron/Requests/From/').concat(storeId));
   }
 
-  getOthersRequstFromMe() {
-    this.http.get<requestModule>(this.config.serverAddress).subscribe(
-      data => {
-        console.log("id: " + data.id);
-        console.log("status: " + data.status);
-        console.log("fromSquadron: " + data.fromSquadron);
-        console.log("toSquadron: " + data.toSquadron);
-        console.log("fDate: " + data.fDate);
-        console.log("tDate: " + data.tDate);
-        console.log("comments: " + data.comments);
-        console.log("item: " + data.item);
-        console.log("requestRespond: " + data.requestRespond);
-      },
-      err => {
-        console.log("Error occured.")
-      }
-    );
-  }
+  getOthersRequstFromMe(storeId) {
+    return this.http.get<requestModule>(this.config.serverAddress.concat('UserService/Squadron/Requests/To/').concat(storeId));
 
+  }
+  checkLogin(userName, password){
+    return this.http.post<userModule>(this.config.serverAddress.concat('/Squadron/Login'), { },
+      {headers: new HttpHeaders().set('Content-Type', 'text/plain').append('userName', userName)
+          .append('password', password) }).subscribe(
+      (val) => {
+        console.log("POST call successful value returned in body",
+          val);
+      },
+      response => {
+        console.log("POST call in error", response);
+      },
+      () => {
+        console.log("The POST observable is now completed.");
+      });
+  }
 
   postNewRequest(request:requestModule) {
     this.http.post(this.config.serverAddress,
@@ -90,44 +70,17 @@ export class HttpService {
         });
   }
 
-  postCancelRequest(request:requestModule) {
-    this.http.post(this.config.serverAddress,
+  postEditRequests(requests:requestsFactoryModule) {
+    this.http.post(this.config.serverAddress.concat('UserService/Sqaudron/RequestRespond'),
       {
-        "id: " :request.id,
-        "status: " : request.status,
-        "fromSquadron: " : request.fromSquadron,
-        "toSquadron: " : request.toSquadron,
-        "fDate: " : request.fDate,
-        "tDate: " : request.tDate,
-        "comments: " : request.comments,
-        "item: " : request.item,
-        "requestRespond: " : request.requestRespond
-      }, this.config.options)
-      .subscribe(
-        (val) => {
-          console.log("POST call successful value returned in body",
-            val);
-        },
-        response => {
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-        });
-  }
+        "fromSquadron": requests.fromSquadron,
+        "toSquadron": requests.toSquadron,
+        "fDate": requests.fDate,
+        "tDate": requests.tDate,
+        "comments": requests.comments,
+        "item": requests.item
 
-  postEditRequest(request:requestModule) {
-    this.http.post(this.config.serverAddress,
-      {
-        "id: " :request.id,
-        "status: " : request.status,
-        "fromSquadron: " : request.fromSquadron,
-        "toSquadron: " : request.toSquadron,
-        "fDate: " : request.fDate,
-        "tDate: " : request.tDate,
-        "comments: " : request.comments,
-        "item: " : request.item,
-        "requestRespond: " : request.requestRespond
+
       }, this.config.options)
       .subscribe(
         (val) => {
@@ -147,9 +100,8 @@ export class HttpService {
   postNewItem(item:itemModule) {
     this.http.post(this.config.serverAddress + "UserService/Squadron/AddItem",
       {
-        "itemName": item.itemName,
+        "_id": item._id,
         "itemCategory": item.itemCategory,
-        "dateAdded": item.dateAdded,
         "squadron": item.squadron
       }, this.config.options)
       .subscribe(
@@ -166,9 +118,9 @@ export class HttpService {
   }
 
   postCancelItem(item:itemModule) {
-    this.http.post(this.config.serverAddress,
+    this.http.post(this.config.serverAddress.concat('UserService/Squadron/DeleteItem'),
       {
-        "itemId": item.itemId,
+        "_id": item._id,
         "itemName": item.itemName,
         "itemCategory": item.itemCategory,
         "dateAdded": item.dateAdded,
@@ -188,9 +140,9 @@ export class HttpService {
   }
 
   postEditItem(item:itemModule) {
-    this.http.post(this.config.serverAddress,
+    this.http.post(this.config.serverAddress.concat('UserService/Squadron/UpdateItem'),
       {
-        "itemId": item.itemId,
+        "_id": item._id,
         "itemName": item.itemName,
         "itemCategory": item.itemCategory,
         "dateAdded": item.dateAdded,
