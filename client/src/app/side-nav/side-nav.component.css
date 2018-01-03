@@ -1,14 +1,18 @@
 .sideNav{
-  width: 400px;
-  height: 100%;
+  
   display:flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color:#444;
+  flex-direction:column;
+
+  height: 100%;
+  width: 20%; 
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #777;
 }
 
 .topImage {
-
 }
 
 .button {
@@ -18,15 +22,17 @@
   padding: 5% 5%;
   font-size: 20px;
   transition-duration: 0.2s;
-  outline: 0;
+  outline: none;
+
 }
 
 .menuButton{
   border: none;
-  background-color:#444;
+  background-color:#777;
   color:white;
   padding: 5% 5%;
   font-size: 20px;
+  outline: none;
 }
 
 .button:hover {
