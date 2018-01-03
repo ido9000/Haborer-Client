@@ -1,0 +1,3 @@
+interface userModule {
+  storeId: string;
+}

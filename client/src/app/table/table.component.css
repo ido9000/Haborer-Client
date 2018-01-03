@@ -19,3 +19,12 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: white;
 }
+
+.moveRight {
+  margin: 20px;
+}
+
+.comments {
+  width: 500px;
+  height: 100px;
+}
