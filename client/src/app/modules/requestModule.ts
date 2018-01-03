@@ -1,12 +1,12 @@
 interface requestModule {
-  id: number;
+  _id: string;
   status: string;
   fromSquadron: string;
   toSquadron: string;
   fDate: string;
   tDate: string;
   comments: string;
-  item: string;
+  item: itemModule;
   requestRespond: string;
 }
 
