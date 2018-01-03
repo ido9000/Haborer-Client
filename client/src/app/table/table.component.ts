@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
             new dummyItem("2","2","2","2","2")];
 
   constructor(private httpService: HttpService) {
-    //this.stores = httpService.getStoreContent();
+    //this.items = httpService.getStoreContent();
   }
 
   ngOnInit() {
