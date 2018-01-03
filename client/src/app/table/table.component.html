@@ -14,9 +14,11 @@
   </tr>
 
   <tr *ngFor="let i of items">
+
     <td *ngIf="currentUser.storeId=='store1'">
       <input type="checkbox" name="vehicle" value="i.itemId">
     </td>
+
     <td  *ngIf="currentUser.storeId=='store1'">
       <input *ngIf="i.kamut>0" list="browsers" name="kamut">
       <datalist *ngIf="i.kamut>0" id="browsers">
@@ -24,6 +26,7 @@
         </option>
       </datalist>
     </td>
+
     <td>{{i.itemId}}</td>
     <td>{{i.itemName}}</td>
     <td>{{i.itemCategory}}</td>
@@ -39,6 +42,7 @@
     <td *ngIf="currentUser.storeId!='store1'">
       <button>X</button>
     </td>
+
   </tr>
 
 </table>
@@ -57,4 +61,4 @@
 </div>
 
 <!--<br>-->
-<input class="moveRight" type="submit" value="Submit">
+<input class="moveRight" type="submit" value="Submit" ><!--(click)="createNewRequest()">-->

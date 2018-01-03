@@ -13,6 +13,8 @@ export class TableComponent implements OnInit {
   items  = [new dummyItem("1","1","1","1","1", "9", "0"),
             new dummyItem("2","2","2","2","2", "0", "4")];
 
+  orderedItems:itemModule[]=[];
+
   constructor(private httpService: HttpService) {
     //this.items = httpService.getStoreContent();
   }
@@ -20,9 +22,9 @@ export class TableComponent implements OnInit {
   ngOnInit() {
   }
 
-  createNewTable(storeContent) {
-
-  }
+  // createNewTable(storeContent) {
+  //
+  // }
 
   getArrayOfNumbers(kamut){
     let a =[0];
@@ -31,6 +33,10 @@ export class TableComponent implements OnInit {
       a = a.concat([i]);
     }
     return a;
+  }
+
+  createNewRequest(){
+
   }
 
 }
