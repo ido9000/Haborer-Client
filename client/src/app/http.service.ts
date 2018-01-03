@@ -1,28 +1,23 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Configuration} from "./configuration-file";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class HttpService {
-
+  stores : string[];
   // private serverAddress:string = "localhost:8080/HaborerService/";  //item request factory
   // private options = { headers: new HttpHeaders().set('Content-Type', 'text/plain') };
 
   private config = new Configuration();
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.stores = [];
+  }
 
   getListOfStores() {
-     let stores:storeModule[];
-    this.http.get<storeModule>(this.config.serverAddress).subscribe(
-      data => {
-        console.log("storeId: " + data.storeId);
-      },
-      err => {
-        console.log("Error occured.")
-      }
-    );
-     return stores;
+    return this.http.get<string[]>(this.config.serverAddress.concat('UserService/Sqaudron/GetAllSquadrons'));
+
   }
 
   getStoreContent() {

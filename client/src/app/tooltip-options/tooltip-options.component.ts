@@ -11,12 +11,19 @@ import {BodyStates} from "../redux/bodyStates";
 })
 export class TooltipOptionsComponent implements OnInit {
 
-  stores  = [new dummyStore1(), new dummyStore2()];//storesArray;
+  //  stores  = [new dummyStore1(), new dummyStore2()];
+  stores: any;
+  storesArr: string[]
 
-  bodyselected:string;
+  bodyselected: string;
 
-  constructor(private httpService: HttpService, private body:BodyStates) {
-    //this.stores = httpService.getListOfStores();
+  constructor(private httpService: HttpService, private body: BodyStates) {
+    this.storesArr = [];
+    this.stores = httpService.getListOfStores();
+    this.stores.subscribe(store =>{
+      this.storesArr = store;
+    });
+
   }
 
   ngOnInit() {

@@ -1,5 +1,8 @@
+<!--<div class="tooltipOption" (click)="showStore()">text 1</div>-->
+<!--<div class="tooltipOption">text 2</div>-->
 
-<div *ngFor="let s of stores" class="tooltipOption" (click)="showStore(s)">
+
+<div *ngFor="let s of storesArr" class="tooltipOption" (click)="showStore(s)">
   {{s}}
 </div>
 
