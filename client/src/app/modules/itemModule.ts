@@ -4,4 +4,6 @@ interface itemModule {
   itemCategory: string;
   dateAdded: string;
   squadron: string;
+  makat : string;
+  kamut : string;
 }

@@ -16,11 +16,10 @@ export class TooltipOptionsComponent implements OnInit {
   bodyselected:string;
 
   constructor(private httpService: HttpService, private body:BodyStates) {
-
+    //this.stores = httpService.getListOfStores();
   }
 
   ngOnInit() {
-    // this.body = this.body.WELCOME;
     this.body.bodyselected.arguments(bodyselected => this.bodyselected == bodyselected);
   }
 
