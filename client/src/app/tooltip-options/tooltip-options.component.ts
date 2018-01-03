@@ -11,6 +11,7 @@ import {BodyStates} from "../redux/bodyStates";
 })
 export class TooltipOptionsComponent implements OnInit {
 
+  //  stores  = [new dummyStore1(), new dummyStore2()];
   stores: any;
   storesArr: string[]
 
@@ -29,13 +30,13 @@ export class TooltipOptionsComponent implements OnInit {
     this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
   }
 
-  // showStore(s) {
-  //   this.body.setStore(s.storeId);
-  // }
-
-  showStore() {
-    this.body.setStore("store1");
+  showStore(s) {
+    this.body.setStore(s);
   }
+
+  // showStore() {
+  //   this.body.setStore("store1");
+  // }
 
 
 }

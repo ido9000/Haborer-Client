@@ -20,8 +20,8 @@ export class HttpService {
 
   }
 
-  getStoreContent(squadronId) {
-    this.http.get<itemModule>(this.config.serverAddress.concat('/Squadron/'.concat(squadronId))).subscribe(
+  getStoreContent(storeId) {
+    this.http.get<itemModule>(this.config.serverAddress).subscribe(
       data => {
         console.log("itemId: " + data.itemId);
         console.log("itemName: " + data.itemName);
