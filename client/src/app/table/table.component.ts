@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../http.service";
+import {BodyStates} from "../redux/bodyStates";
 
 @Component({
   selector: 'app-table',
@@ -10,7 +12,9 @@ export class TableComponent implements OnInit {
   items  = [new dummyItem("1","1","1","1","1"),
             new dummyItem("2","2","2","2","2")];
 
-  constructor() { }
+  constructor(private httpService: HttpService) {
+    //this.stores = httpService.getStoreContent();
+  }
 
   ngOnInit() {
   }
