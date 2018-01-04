@@ -51,15 +51,15 @@ export class TableComponent implements OnInit {
 
 //dummy data
 export class dummyUser implements userModule {
-  storeId: string;
+  squadron: string;
   userName:string;
   password:string;
   _id:string;
   firstName:string;
   lastName:string;
 
-  constructor(storeId){
-    this.storeId =storeId;
+  constructor(squadron){
+    this.squadron =squadron;
 
   }
 }
