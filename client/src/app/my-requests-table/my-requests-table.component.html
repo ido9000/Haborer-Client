@@ -1,0 +1,34 @@
+<table>
+
+  <tr>
+    <th>הגב</th>
+    <th>סטטוס</th>
+    <th>מאיזו טייסת</th>
+    <th>מתאריך</th>
+    <th>עד תאריך</th>
+    <th>הערות המבקש</th>
+    <th>מוצרים</th>
+    <th>הערות נותן השירות</th>
+  </tr>
+
+  <tr *ngFor="let i of requestsFromMe">
+
+    <td>
+      <button [disabled]="!checkStatus(i)" (click)="approveOrDecline(i, 'APPROVED')">אשר</button>
+      <button [disabled]="!checkStatus(i)" (click)="approveOrDecline(i, 'DECLINED')">דחה</button>
+    </td>
+
+    <td>{{i.status}}</td>
+    <td>{{i.fromSquadron}}</td>
+    <td>{{i.fDate|date:'dd/MM/yyyy'}}</td>
+    <td>{{i.tDate|date:'dd/MM/yyyy'}}</td>
+    <td>{{i.comments}}</td>
+    <td>{{i.item|items}}</td>
+    <td>
+      <input class="comments" type="text" value="{{i.requestRespond}}" (input)="commentRespondModule = $event.target.value" [disabled]="!checkStatus(i)">
+    </td>
+
+  </tr>
+
+</table>
+

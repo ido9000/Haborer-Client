@@ -4,4 +4,14 @@
   <app-table class="tableDiv" *ngIf="getBody() != 'welcome' && getBody()!='addUser'" ></app-table>
   <<app-add-item *ngIf="getBody() == 'addUser'"></app-add-item>
   <app-add-item ></app-add-item>
+
+
+  <app-table class="tableDiv" *ngIf="getBody() != 'welcome'" ></app-table>
+
+  <!--ready to use - only replace-->
+  <!--<app-my-requests-table *ngIf="getBody() != 'welcome'"></app-my-requests-table>-->
+  <!--<app-request-to-others *ngIf="getBody() != 'welcome'"></app-request-to-others>-->
+
 </div>
+
+
