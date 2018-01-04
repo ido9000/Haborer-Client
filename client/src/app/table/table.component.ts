@@ -58,6 +58,18 @@ export class TableComponent implements OnInit {
     this.httpService.postNewRequests(newRequestsFactory);
   }
 
+  saveItemCount(item){
+    this.httpService.postEditItem(item);
+  }
+
+  deleteItem(item){
+    if(item.itemMakat){
+      this.httpService.postCancelMakatItem(item);
+    } else {
+      this.httpService.postCancelCountItem(item);
+    }
+  }
+
 }
 
 export class requestsFactory implements requestsFactoryModule{

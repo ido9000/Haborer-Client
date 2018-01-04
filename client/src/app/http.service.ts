@@ -119,14 +119,40 @@ export class HttpService {
         "type":"com.Haborer.Entities.MakatItem"
       }, this.config.options);
   }
-  postCancelItem(item:itemModule) {
+  postCancelCountItem(item:itemModule) {
     this.http.post(this.config.serverAddress.concat('UserService/Squadron/DeleteItem'),
       {
         "_id": item._id,
         "itemName": item.itemName,
         "itemCategory": item.itemCategory,
+        "itemCount": item.itemCount,
         "dateAdded": item.dateAdded,
-        "squadron": item.squadron
+        "squadron": item.squadron,
+        "type": "com.Haborer.Entities.CountItem"
+      }, this.config.options)
+      .subscribe(
+        (val) => {
+          console.log("POST call successful value returned in body",
+            val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+  }
+
+  postCancelMakatItem(item:itemModule) {
+    this.http.post(this.config.serverAddress.concat('UserService/Squadron/DeleteItem'),
+      {
+        "_id": item._id,
+        "itemName": item.itemName,
+        "itemCategory": item.itemCategory,
+        "itemMakat": item.itemMakat,
+        "dateAdded": item.dateAdded,
+        "squadron": item.squadron,
+        "type": "com.Haborer.Entities.MakatItem"
       }, this.config.options)
       .subscribe(
         (val) => {
@@ -148,7 +174,9 @@ export class HttpService {
         "itemName": item.itemName,
         "itemCategory": item.itemCategory,
         "dateAdded": item.dateAdded,
-        "squadron": item.squadron
+        "squadron": item.squadron,
+        "itemCount": item.itemCount,
+        "type": "com.Haborer.Entities.CountItem"
       }, this.config.options)
       .subscribe(
         (val) => {
