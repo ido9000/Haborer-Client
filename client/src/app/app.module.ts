@@ -13,6 +13,9 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {BodyStates} from "./redux/bodyStates";
+import { AddItemComponent } from './add-item/add-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MyRequestsTableComponent } from './my-requests-table/my-requests-table.component';
 import { ItemsPipe } from './items.pipe';
 import { RequestToOthersComponent } from './request-to-others/request-to-others.component';
@@ -27,6 +30,7 @@ import { RequestToOthersComponent } from './request-to-others/request-to-others.
     TableComponent,
     WelcomeMessageComponent,
     TopMenuComponent,
+    AddItemComponent,
     MyRequestsTableComponent,
     ItemsPipe,
     RequestToOthersComponent
@@ -34,7 +38,8 @@ import { RequestToOthersComponent } from './request-to-others/request-to-others.
   imports: [
     BrowserModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [HttpService, BodyStates],
   bootstrap: [AppComponent]
