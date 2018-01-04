@@ -1,28 +1,27 @@
 <table>
 
   <tr>
-    <th *ngIf="currentUser.storeId=='store1'">הזמן</th>
-    <th *ngIf="currentUser.storeId=='store1'">כמות להזמנה</th>
+    <th *ngIf="currentUser.squadron=='store1'">הזמן</th>
+    <th *ngIf="currentUser.squadron=='store1'">כמות להזמנה</th>
     <th>שם מוצר</th>
     <th>קטגוריה</th>
     <th>תאריך הוספה</th>
     <th>מק"ט</th>
     <th>כמות</th>
-    <th *ngIf="currentUser.storeId!='store1'">מחיקה</th>
+    <th *ngIf="currentUser.squadron!='store1'">מחיקה</th>
   </tr>
 
   <tr *ngFor="let i of orderedItems">
 
-    <td *ngIf="currentUser.storeId=='store1'">
+    <td *ngIf="currentUser.squadron=='store1'">
       <input type="checkbox" name="vehicle" value="i._id">
     </td>
 
-    <td  *ngIf="currentUser.storeId=='store1'">
-      <input *ngIf="i.itemCount>0" list="browsers" name="itemCount">
-      <datalist *ngIf="i.itemCount>0" id="browsers">
-        <option *ngFor="let n of getArrayOfNumbers(i.itemCount)" [value]="n">
+    <td  *ngIf="currentUser.squadron=='store1'">
+      <select *ngIf="i.itemCount>0" name="itemCount">
+        <option *ngFor="let n of getArrayOfNumbers(i.itemCount)" value="{{n}}">{{n}}
         </option>
-      </datalist>
+      </select>
     </td>
 
     <td>{{i.itemName}}</td>
@@ -31,13 +30,11 @@
     <td>{{i.itemMakat}}</td>
     <td>{{i.itemCount}}</td>
 
-
-    <td *ngIf="currentUser.storeId=='store1'">{{i.itemCount}}</td>
-    <td *ngIf="currentUser.storeId!='store1'">
+    <td *ngIf="currentUser.squadron!='store1'">
       <input type="number" [value]="i.itemCount" min="0" required *ngIf="i.itemCount==0">
     </td>
 
-    <td *ngIf="currentUser.storeId!='store1'">
+    <td *ngIf="currentUser.squadron!='store1'">
       <button>X</button>
     </td>
 
@@ -46,7 +43,7 @@
 </table>
 
 <br>
-<div class="moveRight" *ngIf="currentUser.storeId=='store1'">
+<div class="moveRight" *ngIf="currentUser.squadron=='store1'">
 
   <p>תאריך איסוף</p>
   <input type="date">

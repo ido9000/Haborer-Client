@@ -1,5 +1,5 @@
 interface userModule {
-  storeId: string;//Should be change to squadron
+  squadron: string;
   userName:string;
   password:string;
   _id:string;
