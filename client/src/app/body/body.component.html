@@ -2,4 +2,7 @@
   <welcome-message class="welcomeDiv" [hidden]="!firstOpen" ></welcome-message>
   <!--<top-menu class="topMenuDiv" *ngIf="selected" ></top-menu>-->
   <app-table class="tableDiv" *ngIf="getBody() != 'welcome'" ></app-table>
+
+
+  <app-my-requests-table *ngIf="getBody() != 'welcome'"></app-my-requests-table>
 </div>

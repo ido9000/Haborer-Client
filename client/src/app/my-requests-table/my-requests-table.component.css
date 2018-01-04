@@ -19,7 +19,3 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: white;
 }
-
-.moveRight {
-  margin: 20px;
-}

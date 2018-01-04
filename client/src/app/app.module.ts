@@ -14,6 +14,7 @@ import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {BodyStates} from "./redux/bodyStates";
 import { MyRequestsTableComponent } from './my-requests-table/my-requests-table.component';
+import { ItemsPipe } from './items.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MyRequestsTableComponent } from './my-requests-table/my-requests-table.
     TableComponent,
     WelcomeMessageComponent,
     TopMenuComponent,
-    MyRequestsTableComponent
+    MyRequestsTableComponent,
+    ItemsPipe
   ],
   imports: [
     BrowserModule,

@@ -1,37 +1,34 @@
 <table>
 
   <tr>
-    <th>approve</th>
-    <th>id</th>
-    <th>status</th>
-    <th>fromSquadron</th>
-    <th>toSquadron</th>
-    <th>fDate</th>
-    <th>tDate</th>
-    <th>comments</th>
-    <th>item</th>
-    <th>requestRespond</th>
+    <th>הגב</th>
+    <th>סטטוס</th>
+    <th>מאיזו טייסת</th>
+    <th>מתאריך</th>
+    <th>עד תאריך</th>
+    <th>הערות</th>
+    <th>מוצרים</th>
+    <th>הערות</th>
   </tr>
 
-  <tr *ngFor="let i of items">
+  <tr *ngFor="let i of requestsFromMe">
 
     <td>
-      <input type="checkbox" name="vehicle" value="i.itemId">
+      <button [disabled]="!checkStatus(i)" (click)="approveOrDecline(i, 'APPROVED')">אשר</button>
+      <button [disabled]="!checkStatus(i)" (click)="approveOrDecline(i, 'DECLINED')">דחה</button>
     </td>
 
-    <td>{{i.id}}</td>
     <td>{{i.status}}</td>
     <td>{{i.fromSquadron}}</td>
-    <td>{{i.toSquadron}}</td>
     <td>{{i.fDate|date:'dd/MM/yyyy'}}</td>
     <td>{{i.tDate|date:'dd/MM/yyyy'}}</td>
     <td>{{i.comments}}</td>
-    <td>{{i.item}}</td>
-    <td>{{i.requestRespond}}</td>
+    <td>{{i.item|items}}</td>
+    <td>
+      <input class="comments" type="text" value="{{i.requestRespond}}" (input)="commentRespondModule = $event.target.value" [disabled]="!checkStatus(i)">
+    </td>
 
   </tr>
 
 </table>
 
-<!--<br>-->
-<input class="moveRight" type="submit" value="Submit" ><!--(click)="createNewRequest()">-->

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../http.service";
+import {BodyStates} from "../redux/bodyStates";
 
 @Component({
   selector: 'app-my-requests-table',
@@ -7,37 +9,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyRequestsTableComponent implements OnInit {
 
-  items  = [new dummyRequest("1","1","1","1","1", "9", "0", "1", "1"),
-              new dummyRequest("2","2","2","2","2", "0", "4", "1", "1")];
+  currentUser: userModule;
+  requests : any;
+  bodyselected: string;
+  requestsFromMe : string[];
+  answered = false;
+  commentRespondModule="";
 
-  constructor() { }
+  constructor(private httpService: HttpService, private body: BodyStates) {
+    this.requestsFromMe=[];
+    this.requests = httpService.getAllMyRequests(this.body.getStore());
+    this.requests.subscribe(requests => {
+      console.log(requests);
+      this.requestsFromMe = requests;
+    });
+  }
 
   ngOnInit() {
+    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
+  }
+
+  approveOrDecline(oldRequest, newStatus){
+    this.commentRespondModule;
+    this.answered=true;
+    oldRequest.status=newStatus;
+    let newRequest = new Request(oldRequest._id,newStatus,oldRequest.fromSquadron,oldRequest.toSquadron,
+                      oldRequest.fDate,oldRequest.tDate,oldRequest.comments,oldRequest.item,this.commentRespondModule);
+    this.httpService.postEditRequest(newRequest);
+  }
+
+  checkStatus(request){
+    let pending=true;
+    if(request.status=="APPROVED" || request.status=="DECLINED"){
+      pending=false;
+    }
+    return pending;
   }
 
 }
 
-//dummy data
-export class dummyRequest implements requestModule {
-  id: number;
+export class Request implements requestModule{
+  _id: string;
   status: string;
   fromSquadron: string;
   toSquadron: string;
   fDate: string;
   tDate: string;
   comments: string;
-  item: string;
+  item: itemModule;
   requestRespond: string;
 
-  constructor(id, status, fromSquadron, toSquadron, fDate, tDate, comments, item, requestRespond){
-    this.id =id;
-    this.status = status;
-    this.fromSquadron = fromSquadron;
-    this.toSquadron = toSquadron;
-    this.fDate = fDate;
-    this.tDate = tDate;
-    this.comments = comments;
-    this.item = item;
-    this.requestRespond = requestRespond;
+  constructor(_id,status,fromSquadron,toSquadron,fDate,tDate,comments,item,requestRespond){
+    this._id = _id;
+    this.status=status;
+    this.fromSquadron=fromSquadron;
+    this.toSquadron=toSquadron;
+    this.fDate=fDate;
+    this.tDate=tDate;
+    this.comments=comments;
+    this.item=item;
+    this.requestRespond=requestRespond;
   }
+
 }
