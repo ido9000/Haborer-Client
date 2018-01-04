@@ -13,7 +13,7 @@ export class TooltipOptionsComponent implements OnInit {
 
   //  stores  = [new dummyStore1(), new dummyStore2()];
   stores: any;
-  storesArr: string[]
+  storesArr: string[];
 
   bodyselected: string;
 

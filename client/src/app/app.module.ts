@@ -13,6 +13,7 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {BodyStates} from "./redux/bodyStates";
+import { MyRequestsTableComponent } from './my-requests-table/my-requests-table.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {BodyStates} from "./redux/bodyStates";
     TooltipOptionsComponent,
     TableComponent,
     WelcomeMessageComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    MyRequestsTableComponent
   ],
   imports: [
     BrowserModule,

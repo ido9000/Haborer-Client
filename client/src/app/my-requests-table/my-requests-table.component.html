@@ -1,0 +1,37 @@
+<table>
+
+  <tr>
+    <th>approve</th>
+    <th>id</th>
+    <th>status</th>
+    <th>fromSquadron</th>
+    <th>toSquadron</th>
+    <th>fDate</th>
+    <th>tDate</th>
+    <th>comments</th>
+    <th>item</th>
+    <th>requestRespond</th>
+  </tr>
+
+  <tr *ngFor="let i of items">
+
+    <td>
+      <input type="checkbox" name="vehicle" value="i.itemId">
+    </td>
+
+    <td>{{i.id}}</td>
+    <td>{{i.status}}</td>
+    <td>{{i.fromSquadron}}</td>
+    <td>{{i.toSquadron}}</td>
+    <td>{{i.fDate|date:'dd/MM/yyyy'}}</td>
+    <td>{{i.tDate|date:'dd/MM/yyyy'}}</td>
+    <td>{{i.comments}}</td>
+    <td>{{i.item}}</td>
+    <td>{{i.requestRespond}}</td>
+
+  </tr>
+
+</table>
+
+<!--<br>-->
+<input class="moveRight" type="submit" value="Submit" ><!--(click)="createNewRequest()">-->
