@@ -1,0 +1,37 @@
+<body dir="rtl">
+<div class="claa">
+
+<h3>הוספת מוצר</h3>
+<h5>*בקשה לא תישלח עד שכל השדות ימולאו כראוי</h5>
+
+  <form #addUserForm="ngForm">
+    <label for="itemName">שם מוצר</label>
+    <input required type="text" id="itemName" name="itemName" placeholder="שם המוצר.." [(ngModel)]="itemName">
+
+    <label for="itemCategory">קטגוריית מוצר</label>
+    <input required type="text" id="itemCategory" name="itemCategory" placeholder="קטגוריית מוצר.." [(ngModel)]="itemCategory">
+
+      <input type="radio" name="radioGroup"  [checked]="true" [value]="Makat" (change)="onSelectionChange('Makat')"/>מוצר בעל מק"ט
+      <input type="radio" name="radioGroup"  [value]="Count" (change)="onSelectionChange('Count')"/>מוצרים ללא מק"ט,אלא כמות בלבד
+
+
+    <div *ngIf="this.entry=='Makat'">
+      <label>הכנס מק"ט למוצר:</label>
+      <input  required type="text" id="itemMakat" name="itemMakat" placeholder="מקט.." [(ngModel)]="itemMakat">
+
+    </div>
+    <div *ngIf="this.entry=='Count'">
+      <label>הכנס כמות של פריטים</label>
+      <input required type="number" id="itemCount" name="itemCount" placeholder="כמות.." [(ngModel)]="itemCount">
+    </div>
+
+
+
+    <button (click)="sendValues()" [disabled]="addUserForm.form.invalid">הוסף מוצר</button>
+    <label>{{this.message}}</label>
+  </form>
+</div>
+
+</body>
+
+

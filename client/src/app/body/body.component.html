@@ -1,5 +1,7 @@
 <div class="body">
   <welcome-message class="welcomeDiv" [hidden]="!firstOpen" ></welcome-message>
   <!--<top-menu class="topMenuDiv" *ngIf="selected" ></top-menu>-->
-  <app-table class="tableDiv" *ngIf="getBody() != 'welcome'" ></app-table>
+  <app-table class="tableDiv" *ngIf="getBody() != 'welcome' && getBody()!='addUser'" ></app-table>
+  <<app-add-item *ngIf="getBody() == 'addUser'"></app-add-item>
+  <app-add-item ></app-add-item>
 </div>

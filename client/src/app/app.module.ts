@@ -13,6 +13,9 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import {HttpService} from "./http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {BodyStates} from "./redux/bodyStates";
+import { AddItemComponent } from './add-item/add-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -23,12 +26,14 @@ import {BodyStates} from "./redux/bodyStates";
     TooltipOptionsComponent,
     TableComponent,
     WelcomeMessageComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [HttpService, BodyStates],
   bootstrap: [AppComponent]
