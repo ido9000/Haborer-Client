@@ -43,6 +43,7 @@ export class HttpService {
       });
   }
 
+
   postEditRequest(request:requestModule) {
     this.http.post(this.config.serverAddress.concat('UserService/Sqaudron/RequestRespond'),
       {
@@ -97,26 +98,27 @@ export class HttpService {
 
 
 
-  postNewItem(item:itemModule) {
-    this.http.post(this.config.serverAddress + "UserService/Squadron/AddItem",
+  postNewCountItem(item:itemModule){
+     return this.http.post(this.config.serverAddress + "UserService/Squadron/AddItem",
       {
-        "_id": item._id,
+        "itemName": item.itemName,
         "itemCategory": item.itemCategory,
-        "squadron": item.squadron
-      }, this.config.options)
-      .subscribe(
-        (val) => {
-          console.log("POST call successful value returned in body",
-            val);
-        },
-        response => {
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-        });
-  }
+        "squadron": item.squadron,
+        "itemCount":item.itemCount,
+        "type":"com.Haborer.Entities.CountItem"
 
+      }, this.config.options);
+  }
+  postNewMakatItem(item:itemModule) {
+     return this.http.post(this.config.serverAddress + "UserService/Squadron/AddItem",
+      {
+        "itemName": item.itemName,
+        "itemCategory": item.itemCategory,
+        "squadron": item.squadron,
+        "itemMakat":item.itemMakat,
+        "type":"com.Haborer.Entities.MakatItem"
+      }, this.config.options);
+  }
   postCancelItem(item:itemModule) {
     this.http.post(this.config.serverAddress.concat('UserService/Squadron/DeleteItem'),
       {
