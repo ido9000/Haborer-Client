@@ -11,7 +11,6 @@ import {BodyStates} from "../redux/bodyStates";
 })
 export class TooltipOptionsComponent implements OnInit {
 
-  //  stores  = [new dummyStore1(), new dummyStore2()];
   stores: any;
   storesArr: string[];
 
@@ -41,24 +40,3 @@ export class TooltipOptionsComponent implements OnInit {
 
 
 }
-
-
-
-//dummy data
-export class dummyStore1 implements storeModule {
-  storeId: string;
-
-  constructor(){
-    this.storeId = "חנות 1";
-  }
-}
-
-// let storesArray = [dummyStore1, dummyStore2];
-export class dummyStore2 implements storeModule {
-  storeId: string;
-
-  constructor(){
-    this.storeId = "חנות 2";
-  }
-}
-

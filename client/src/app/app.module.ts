@@ -16,6 +16,9 @@ import {BodyStates} from "./redux/bodyStates";
 import { AddItemComponent } from './add-item/add-item.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MyRequestsTableComponent } from './my-requests-table/my-requests-table.component';
+import { ItemsPipe } from './items.pipe';
+import { RequestToOthersComponent } from './request-to-others/request-to-others.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TableComponent,
     WelcomeMessageComponent,
     TopMenuComponent,
-    AddItemComponent
+    AddItemComponent,
+    MyRequestsTableComponent,
+    ItemsPipe,
+    RequestToOthersComponent
   ],
   imports: [
     BrowserModule,

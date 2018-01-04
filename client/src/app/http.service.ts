@@ -43,18 +43,19 @@ export class HttpService {
       });
   }
 
-  postNewRequest(request:requestModule) {
-        this.http.post(this.config.serverAddress,
+
+  postEditRequest(request:requestModule) {
+    this.http.post(this.config.serverAddress.concat('UserService/Sqaudron/RequestRespond'),
       {
-        "id: " :request._id,
-        "status: " : request.status,
-        "fromSquadron: " : request.fromSquadron,
-        "toSquadron: " : request.toSquadron,
-        "fDate: " : request.fDate,
-        "tDate: " : request.tDate,
-        "comments: " : request.comments,
-        "item: " : request.item,
-        "requestRespond: " : request.requestRespond
+        "_id" :request._id,
+        "status" : request.status,
+        "fromSquadron" : request.fromSquadron,
+        "toSquadron" : request.toSquadron,
+        "fDate" : request.fDate,
+        "tDate" : request.tDate,
+        "comments" : request.comments,
+        "item" : request.item,
+        "requestRespond" : request.requestRespond
 
       }, this.config.options)
       .subscribe(
@@ -70,8 +71,8 @@ export class HttpService {
         });
   }
 
-  postEditRequests(requests:requestsFactoryModule) {
-    this.http.post(this.config.serverAddress.concat('UserService/Sqaudron/RequestRespond'),
+  postNewRequests(requests:requestsFactoryModule) {
+    this.http.post(this.config.serverAddress.concat('UserService/Sqaudron/NewRequest'),
       {
         "fromSquadron": requests.fromSquadron,
         "toSquadron": requests.toSquadron,

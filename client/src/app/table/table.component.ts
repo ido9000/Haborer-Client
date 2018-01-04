@@ -50,36 +50,16 @@ export class TableComponent implements OnInit {
 
 
 //dummy data
-export class dummyItem implements itemModule {
-  _id: string;
-  itemName: string;
-  itemCategory: string;
-  dateAdded: string;
-  squadron: string;
-  itemMakat: string;
-  itemCount: string;
-
-  constructor(_id, itemName, itemCategory, dateAdded, squadron, itemMakat, itemCount){
-    this._id =_id;
-    this.itemName = itemName;
-    this.itemCategory = itemCategory;
-    this.dateAdded = dateAdded;
-    this.squadron = squadron;
-    this.itemMakat = itemMakat;
-    this.itemCount = itemCount;
-  }
-}
-
 export class dummyUser implements userModule {
-  storeId: string;
+  squadron: string;
   userName:string;
   password:string;
   _id:string;
   firstName:string;
   lastName:string;
 
-  constructor(storeId){
-    this.storeId =storeId;
+  constructor(squadron){
+    this.squadron =squadron;
 
   }
 }
