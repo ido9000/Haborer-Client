@@ -30,6 +30,7 @@ import { RequestToOthersComponent } from './request-to-others/request-to-others.
     TableComponent,
     WelcomeMessageComponent,
     TopMenuComponent,
+    AddItemComponent,
     MyRequestsTableComponent,
     ItemsPipe,
     RequestToOthersComponent
