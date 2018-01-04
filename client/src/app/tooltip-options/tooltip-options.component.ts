@@ -20,18 +20,19 @@ export class TooltipOptionsComponent implements OnInit {
   constructor(private httpService: HttpService, private body: BodyStates) {
     this.storesArr = [];
     this.stores = httpService.getListOfStores();
-    this.stores.subscribe(store =>{
+    this.stores.subscribe(store => {
       this.storesArr = store;
     });
 
   }
 
   ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
+    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
   }
 
   showStore(s) {
-    this.body.setStore(s);
+    const x= s.split(" ");
+    this.body.setStore(x[1]);
   }
 
   // showStore() {

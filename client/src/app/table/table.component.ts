@@ -11,19 +11,22 @@ export class TableComponent implements OnInit {
 
   currentUser: userModule = new dummyUser("store1");
 
-  items;//  = [new dummyItem("1","1","1","1","1", "9", "0"),
-          //  new dummyItem("2","2","2","2","2", "0", "4")];
+  items: any;
 
   bodyselected: string;
 
-  orderedItems:itemModule[]=[];
+  orderedItems:itemModule[];
 
   constructor(private httpService: HttpService, private body: BodyStates) {
+    this.orderedItems=[];
     this.items = httpService.getStoreContent(this.body.getStore());
+    this.items.subscribe(items => {
+      this.orderedItems = items;
+    });
   }
 
   ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
+    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
   }
 
   // createNewTable(storeContent) {
@@ -48,27 +51,32 @@ export class TableComponent implements OnInit {
 
 //dummy data
 export class dummyItem implements itemModule {
-  itemId: string;
+  _id: string;
   itemName: string;
   itemCategory: string;
   dateAdded: string;
   squadron: string;
-  makat: string;
-  kamut: string;
+  itemMakat: string;
+  itemCount: string;
 
-  constructor(itemId, itemName, itemCategory, dateAdded, squadron, makat, kamut){
-    this.itemId =itemId;
+  constructor(_id, itemName, itemCategory, dateAdded, squadron, itemMakat, itemCount){
+    this._id =_id;
     this.itemName = itemName;
     this.itemCategory = itemCategory;
     this.dateAdded = dateAdded;
     this.squadron = squadron;
-    this.makat = makat;
-    this.kamut = kamut;
+    this.itemMakat = itemMakat;
+    this.itemCount = itemCount;
   }
 }
 
 export class dummyUser implements userModule {
   storeId: string;
+  userName:string;
+  password:string;
+  _id:string;
+  firstName:string;
+  lastName:string;
 
   constructor(storeId){
     this.storeId =storeId;
