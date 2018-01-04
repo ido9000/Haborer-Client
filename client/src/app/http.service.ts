@@ -71,7 +71,7 @@ export class HttpService {
   }
 
   postNewRequests(requests:requestsFactoryModule) {
-    this.http.post(this.config.serverAddress.concat('UserService/Sqaudron/NewRequest'),
+    this.http.post(this.config.serverAddress.concat('UserService/Squadron/NewRequest'),
       {
         "fromSquadron": requests.fromSquadron,
         "toSquadron": requests.toSquadron,

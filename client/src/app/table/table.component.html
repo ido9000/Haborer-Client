@@ -14,7 +14,7 @@
   <tr *ngFor="let i of orderedItems">
 
     <td *ngIf="currentUser.squadron=='store1'">
-      <input type="checkbox" name="vehicle" value="i._id">
+      <input type="checkbox" value="{{i._id}}" (change)="clickOnCheck(i)">
     </td>
 
     <td  *ngIf="currentUser.squadron=='store1'">
@@ -46,14 +46,14 @@
 <div class="moveRight" *ngIf="currentUser.squadron=='store1'">
 
   <p>תאריך איסוף</p>
-  <input type="date">
+  <input type="date" (input)="fDate = $event.target.value">
 
   <p>תאריך החזרה</p>
-  <input type="date">
+  <input type="date" (input)="tDate = $event.target.value">
 
   <p>הערות</p>
-  <textarea class="comments" type="text"></textarea>
+  <textarea class="comments" type="text" (input)="comments = $event.target.value"></textarea>
 </div>
 
 <!--<br>-->
-<input class="moveRight" type="submit" value="Submit" ><!--(click)="createNewRequest()">-->
+<button class="moveRight" (click)="createNewRequest()">שלח בקשה</button>
