@@ -32,7 +32,7 @@
     <td>{{i.itemCount}}</td>
 
 
-    <td *ngIf="currentUser.storeId=='store1'">{{i.itemCount}}</td>
+    <!--<td *ngIf="currentUser.storeId=='store1'">{{i.itemCount}}</td>-->
     <td *ngIf="currentUser.storeId!='store1'">
       <input type="number" [value]="i.itemCount" min="0" required *ngIf="i.itemCount==0">
     </td>

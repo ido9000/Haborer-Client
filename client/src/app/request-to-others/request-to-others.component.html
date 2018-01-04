@@ -1,0 +1,38 @@
+<table>
+
+  <tr>
+    <th>הגב</th>
+    <th>סטטוס</th>
+    <th>אל איזו טייסת</th>
+    <th>מתאריך</th>
+    <th>עד תאריך</th>
+    <th>הערות המבקש</th>
+    <th>מוצרים</th>
+    <th>הערות נותן השירות</th>
+  </tr>
+
+  <tr *ngFor="let i of requestsFromMe">
+
+    <td>
+      <button [disabled]="!checkStatusForCancel(i)" (click)="doAction(i, 'CANCELD')">בטל</button>
+      <button [disabled]="!checkStatusForTake(i)" (click)="doAction(i, 'TAKEN')">לקחתי</button>
+      <button [disabled]="!checkStatusForReturn(i)" (click)="doAction(i, 'RETURNED')">הוחזר</button>
+    </td>
+
+    <td>{{i.status}}</td>
+    <td>{{i.toSquadron}}</td>
+    <td>{{i.fDate|date:'dd/MM/yyyy'}}</td>
+    <td>{{i.tDate|date:'dd/MM/yyyy'}}</td>
+    <td>
+      <input class="comments" type="text" value="{{i.comments}}" (input)="commentRespondModule = $event.target.value" [disabled]="!checkStatusComments(i)">
+    </td>
+    <td>{{i.item|items}}</td>
+    <td>{{i.requestRespond}}</td>
+
+
+
+
+  </tr>
+
+</table>
+

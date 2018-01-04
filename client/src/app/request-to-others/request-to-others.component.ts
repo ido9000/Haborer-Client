@@ -3,11 +3,11 @@ import {HttpService} from "../http.service";
 import {BodyStates} from "../redux/bodyStates";
 
 @Component({
-  selector: 'app-my-requests-table',
-  templateUrl: './my-requests-table.component.html',
-  styleUrls: ['./my-requests-table.component.css']
+  selector: 'app-request-to-others',
+  templateUrl: './request-to-others.component.html',
+  styleUrls: ['./request-to-others.component.css']
 })
-export class MyRequestsTableComponent implements OnInit {
+export class RequestToOthersComponent implements OnInit {
 
   currentUser: userModule;
   requests : any;
@@ -28,19 +28,43 @@ export class MyRequestsTableComponent implements OnInit {
     this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
   }
 
-  approveOrDecline(oldRequest, newStatus){
+  doAction(oldRequest, newStatus){
     oldRequest.status=newStatus;
     let newRequest = new Request(oldRequest._id,newStatus,oldRequest.fromSquadron,oldRequest.toSquadron,
-                      oldRequest.fDate,oldRequest.tDate,oldRequest.comments,oldRequest.item,this.commentRespondModule);
+      oldRequest.fDate,oldRequest.tDate,oldRequest.comments,oldRequest.item,this.commentRespondModule);
     this.httpService.postEditRequest(newRequest);
   }
 
-  checkStatus(request){
-    let pending=true;
-    if(request.status=="APPROVED" || request.status=="DECLINED"){
-      pending=false;
+  checkStatusForCancel(request){
+    let cacnel=false;
+    if(request.status=="PENDING" || request.status=="APPROVED"){
+      cacnel=true;
     }
-    return pending;
+    return cacnel;
+  }
+
+  checkStatusForTake(request){
+    let take=false;
+    if(request.status=="APPROVED"){
+      take=true;
+    }
+    return take;
+  }
+
+  checkStatusForReturn(request){
+    let returned=false;
+    if(request.status=="TAKEN"){
+      returned=true;
+    }
+    return returned;
+  }
+
+  checkStatusComments(request){
+    let comments=false;
+    if(request.status=="PENDING" || request.status=="APPROVED" || request.status=="TAKEN"){
+      comments=true;
+    }
+    return comments;
   }
 
 }
@@ -69,3 +93,4 @@ export class Request implements requestModule{
   }
 
 }
+
