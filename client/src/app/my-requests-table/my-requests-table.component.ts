@@ -11,7 +11,7 @@ export class MyRequestsTableComponent implements OnInit {
 
   currentUser: userModule;
   requests : any;
-  bodyselected: string;
+  // bodyselected: string;
   requestsFromMe : string[];
   commentRespondModule="";
 
@@ -25,7 +25,7 @@ export class MyRequestsTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
+    // this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
   }
 
   approveOrDecline(oldRequest, newStatus){

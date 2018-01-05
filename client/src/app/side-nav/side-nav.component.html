@@ -8,12 +8,11 @@
     </span>
   </button>
 
-  <button type="button" class="button" (click)=showAddItem()>הוספת מוצרים חדשים
+  <button type="button" class="button" (click)=showAddItem() routerLink="addNewItem">הוספת מוצרים חדשים
   </button>
-  <button type="button" class="button">ההזמנות שביצעתי</button>
-  <button type="button" class="button">הזמנות ממני</button>
-  <button type="button" class="button">התחברות</button>
-  <!--<button type="button" class="button spreadOnPage"></button>-->
+  <button type="button" class="button" routerLink="toOthersRequest">ההזמנות שביצעתי</button>
+  <button type="button" class="button" routerLink="fromOthersRequest">הזמנות ממני</button>
+  <button type="button" class="button" routerLink="login">התחברות</button>
 </div>
 
 

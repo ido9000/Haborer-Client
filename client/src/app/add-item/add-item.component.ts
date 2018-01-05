@@ -8,7 +8,7 @@ import {BodyStates} from "../redux/bodyStates";
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
-  bodyselected: string;
+  // bodyselected: string;
   entry='Makat';
    itemName:string;
    itemCategory:string;
@@ -22,7 +22,7 @@ export class AddItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
+    // this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
   }
   onSelectionChange(entry)
   {

@@ -1,11 +1,13 @@
 <div class="body">
-  <welcome-message class="welcomeDiv" [hidden]="!firstOpen" ></welcome-message>
-  <!--<top-menu class="topMenuDiv" *ngIf="selected" ></top-menu>-->
-  <app-table class="tableDiv" *ngIf="getBody() != 'welcome' && getBody()!='addUser'" ></app-table>
-  <<app-add-item *ngIf="getBody() == 'addUser'"></app-add-item>
-  <app-add-item ></app-add-item>
+  <!--<welcome-message class="welcomeDiv" [hidden]="!firstOpen" ></welcome-message>-->
 
 
+  <!--<app-table class="tableDiv" *ngIf="getBody() != 'welcome' && getBody()!='addUser'" ></app-table>-->
+  <!--<<app-add-item *ngIf="getBody() == 'addUser'"></app-add-item>-->
+  <!--<app-add-item ></app-add-item>-->
+
+
+  <router-outlet></router-outlet>
 
   <!--ready to use - only replace-->
   <!--<app-my-requests-table *ngIf="getBody() != 'welcome'"></app-my-requests-table>-->

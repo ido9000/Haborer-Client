@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
   currentUser: userModule = new dummyUser("store2");
   currentStore = "155";
   items: any;
-  bodyselected: string;
+  // bodyselected: string;
   orderedItems:itemModule[];
   fDate;
   tDate;
@@ -30,7 +30,7 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
+    // this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
   }
 
   getArrayOfNumbers(kamut){

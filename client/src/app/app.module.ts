@@ -19,6 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyRequestsTableComponent } from './my-requests-table/my-requests-table.component';
 import { ItemsPipe } from './items.pipe';
 import { RequestToOthersComponent } from './request-to-others/request-to-others.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,13 +36,15 @@ import { RequestToOthersComponent } from './request-to-others/request-to-others.
     AddItemComponent,
     MyRequestsTableComponent,
     ItemsPipe,
-    RequestToOthersComponent
+    RequestToOthersComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
   ],
   providers: [HttpService, BodyStates],
   bootstrap: [AppComponent]

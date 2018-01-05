@@ -8,7 +8,7 @@ import {BodyStates} from "../redux/bodyStates";
 })
 export class BodyComponent implements OnInit {
 
-  bodyselected:string;
+  // bodyselected:string;
   firstOpen = true;
 
   constructor(private body:BodyStates) {
@@ -16,7 +16,7 @@ export class BodyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
+    // this.body.bodyselected.bind(bodyselected => this.bodyselected == bodyselected);
   }
 
   getBody() {
