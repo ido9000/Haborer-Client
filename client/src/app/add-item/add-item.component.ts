@@ -1,6 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
-import {BodyStates} from "../redux/bodyStates";
 
 @Component({
   selector: 'app-add-item',
@@ -8,32 +7,25 @@ import {BodyStates} from "../redux/bodyStates";
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
-  // bodyselected: string;
   entry='Makat';
-   itemName:string;
-   itemCategory:string;
-   itemMakat:string;
-   itemCount:number;
-   message:string;
+  itemName:string;
+  itemCategory:string;
+  itemMakat:string;
+  itemCount:number;
+  message:string;
   respone:any;
 
-  constructor(private httpService: HttpService, private body: BodyStates) {
+  constructor(private httpService: HttpService) {  }
 
-  }
+  ngOnInit() {  }
 
-  ngOnInit() {
-    // this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
-  }
-  onSelectionChange(entry)
-  {
+  onSelectionChange(entry) {
     this.entry= entry;
   }
-  showAddItem() {
-    this.body.setStore("addUser");
-  }
-  sendValues():void{
+
+  sendValues():void {
     this.message=" ";
-    if(this.entry=='Makat'){
+    if(this.entry=='Makat') {
       this.respone=this.httpService.postNewMakatItem(new item(this.itemName,this.itemCategory,this.itemMakat,this.itemCount));
       this.respone.subscribe(
         (val) => {
@@ -47,7 +39,7 @@ export class AddItemComponent implements OnInit {
           console.log("The POST observable is now completed.");
           this.message="נוסף בהצלחה";
         });
-    }else{
+    } else {
       this.respone=this.httpService.postNewCountItem(new item(this.itemName,this.itemCategory,this.itemMakat,this.itemCount));
       this.respone.subscribe(
         (val) => {

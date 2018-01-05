@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
-import {BodyStates} from "../redux/bodyStates";
 import {Request} from "../request-to-others/request-to-others.component";
 
 @Component({
@@ -10,28 +9,25 @@ import {Request} from "../request-to-others/request-to-others.component";
 })
 export class TableComponent implements OnInit {
 
-  currentUser: userModule = new dummyUser("store2");
+  currentUser: userModule = new dummyUser("store1");
   currentStore = "155";
   items: any;
-  // bodyselected: string;
   orderedItems:itemModule[];
   fDate;
   tDate;
   comments;
   chosenItems=[];
 
-  constructor(private httpService: HttpService, private body: BodyStates) {
+  constructor(private httpService: HttpService) {
     this.orderedItems=[];
-    this.items = httpService.getStoreContent(this.body.getStore());
+    this.items = httpService.getStoreContent(this.currentUser.squadron);
     this.items.subscribe(items => {
       this.orderedItems = items;
     });
 
   }
 
-  ngOnInit() {
-    // this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
-  }
+  ngOnInit() {  }
 
   getArrayOfNumbers(kamut){
     let a =[0];
