@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
-import {BodyStates} from "../redux/bodyStates";
 
 @Component({
   selector: 'app-my-requests-table',
@@ -9,24 +8,21 @@ import {BodyStates} from "../redux/bodyStates";
 })
 export class MyRequestsTableComponent implements OnInit {
 
-  currentUser: userModule;
+  currentUser: userModule = new dummyUser("store1");
   requests : any;
-  bodyselected: string;
   requestsFromMe : string[];
   commentRespondModule="";
 
-  constructor(private httpService: HttpService, private body: BodyStates) {
+  constructor(private httpService: HttpService) {
     this.requestsFromMe=[];
-    this.requests = httpService.getAllMyRequests(this.body.getStore());
+    this.requests = httpService.getAllMyRequests(this.currentUser.squadron);
     this.requests.subscribe(requests => {
       console.log(requests);
       this.requestsFromMe = requests;
     });
   }
 
-  ngOnInit() {
-    this.body.bodyselected.bind(bodyselected => this.bodyselected === bodyselected);
-  }
+  ngOnInit() {  }
 
   approveOrDecline(oldRequest, newStatus){
     oldRequest.status=newStatus;
@@ -68,4 +64,20 @@ export class Request implements requestModule{
     this.requestRespond=requestRespond;
   }
 
+}
+
+
+//dummy data
+export class dummyUser implements userModule {
+  squadron: string;
+  userName:string;
+  password:string;
+  _id:string;
+  firstName:string;
+  lastName:string;
+
+  constructor(squadron){
+    this.squadron =squadron;
+
+  }
 }

@@ -59,4 +59,4 @@
   <textarea class="comments" type="text" (input)="comments = $event.target.value"></textarea>
 </div>
 
-
+<button class="moveRight" *ngIf="currentUser.squadron=='store1'" (click)="createNewRequest()">שלח בקשה</button>
