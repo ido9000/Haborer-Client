@@ -12,5 +12,8 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkSessionActivated(){
+    return JSON.parse(localStorage.getItem("user"))!=null;
+  }
 
 }

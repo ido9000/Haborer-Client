@@ -28,20 +28,12 @@ export class HttpService {
 
   }
   checkLogin(userName, password){
-    return this.http.post<userModule>(this.config.serverAddress.concat('/Squadron/Login'), { },
-      {headers: new HttpHeaders().set('Content-Type', 'text/plain').append('userName', userName)
-          .append('password', password) }).subscribe(
-      (val) => {
-        console.log("POST call successful value returned in body",
-          val);
-      },
-      response => {
-        console.log("POST call in error", response);
-      },
-      () => {
-        console.log("The POST observable is now completed.");
-      });
+    return this.http.post<userModule>(this.config.serverAddress.concat('UserService/Squadron/Login'), {
+        "userName": userName,
+        "password": password},
+      this.config.options);
   }
+
 
 
   postEditRequest(request:requestModule) {
