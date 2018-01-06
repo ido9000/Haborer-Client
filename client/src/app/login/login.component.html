@@ -5,10 +5,10 @@
   <h5>*יש למלא את כל השדות כראוי</h5>
 
   <form #addUserForm="ngForm">
-    <label for="userName">שם משתמש</label>
+    <label for="userName">שם משתמש: </label>
     <input required type="text" id="userName" name="userName" placeholder="שם משתמש.." [(ngModel)]="userName">
-
-    <label for="password">סיסמא</label>
+    <br>
+    <label for="password">סיסמא: </label>
     <input required type="password" id="password" name="password" placeholder="סיסמא.." [(ngModel)]="password">
 
     <button (click)="login()" [disabled]="addUserForm.form.invalid">התחבר</button>
