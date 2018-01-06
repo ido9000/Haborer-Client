@@ -9,7 +9,7 @@ import {Request} from "../request-to-others/request-to-others.component";
 })
 export class TableComponent implements OnInit {
 
-  currentUser: userModule ;
+  currentUser: userModule;
   currentStore :string;
   items: any;
   orderedItems:itemModule[];
@@ -68,6 +68,7 @@ export class TableComponent implements OnInit {
       this.httpService.postCancelCountItem(item);
     }
   }
+
   checkSessionActiveForSession(){
     return JSON.parse(localStorage.getItem("user"))!=null;
   }

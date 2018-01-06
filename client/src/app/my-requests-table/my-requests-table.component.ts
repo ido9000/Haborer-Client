@@ -40,6 +40,10 @@ export class MyRequestsTableComponent implements OnInit {
     return pending;
   }
 
+  checkSessionActiveForSession(){
+    return JSON.parse(localStorage.getItem("user"))!=null;
+  }
+
 }
 
 export class Request implements requestModule{

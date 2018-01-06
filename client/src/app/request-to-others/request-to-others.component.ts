@@ -64,6 +64,10 @@ export class RequestToOthersComponent implements OnInit {
     return comments;
   }
 
+  checkSessionActiveForSession(){
+    return JSON.parse(localStorage.getItem("user"))!=null;
+  }
+
 }
 
 export class Request implements requestModule{

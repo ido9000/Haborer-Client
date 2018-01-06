@@ -11,10 +11,6 @@
     <label for="password">סיסמא</label>
     <input required type="password" id="password" name="password" placeholder="סיסמא.." [(ngModel)]="password">
 
-
-
-
-
     <button (click)="login()" [disabled]="addUserForm.form.invalid">התחבר</button>
     <label>{{this.message}}</label>
   </form>

@@ -14,7 +14,7 @@ export class AddItemComponent implements OnInit {
   itemCount:number;
   message:string;
   respone:any;
-  user:userModule
+  user:userModule;
 
   constructor(private httpService: HttpService) {
     this.user= JSON.parse(localStorage.getItem("user"));
@@ -24,6 +24,10 @@ export class AddItemComponent implements OnInit {
 
   onSelectionChange(entry) {
     this.entry= entry;
+  }
+
+  checkSessionActiveForSession(){
+    return JSON.parse(localStorage.getItem("user"))!=null;
   }
 
   sendValues():void {

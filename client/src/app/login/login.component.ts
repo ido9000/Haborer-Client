@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
     this.respone.subscribe(userResponse => {
       this.user = userResponse;
       this.update(this.user);
-      localStorage.setItem("user",JSON.stringify(this.user));
+      // localStorage.setItem("user",JSON.stringify(this.user));
+      localStorage.setItem("user","155");
     });
 
   }
