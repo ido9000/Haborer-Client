@@ -8,20 +8,44 @@ import {HttpService} from "../http.service";
 })
 export class LoginComponent implements OnInit {
 
-  userName;
-  password;
+  userName:string;
+  password:string;
+  message:string;
+  respone:any;
+  user:userModule;
 
-  constructor(private httpService: HttpService) {  }
+  constructor(private httpService: HttpService) {
+    this.user = null;
+  }
 
   ngOnInit() {
   }
 
-  login(){
-    if(this.httpService.checkLogin(this.userName, this.password)){ //TODO: check this call!
-      return true;
-    } else{
-      return false;
+  login():void{
+    this.message=" ";
+    this.respone= this.httpService.checkLogin(this.userName,this.password);
+    this.respone.subscribe(userResponse => {
+      this.user = userResponse;
+      this.update(this.user);
+      localStorage.setItem("user",JSON.stringify(this.user));
+    });
+
+  }
+
+  update(user){
+    if(this.user==null){
+      this.message="פרטי התחברות שגויים";
+    }else{
+      this.message="התחברות בוצעה בהצלחה";
+
     }
   }
 
+  logout(){
+    localStorage.setItem("user",null);
+  }
+
+  checkSessionActive(){
+    return JSON.parse(localStorage.getItem("user"))!=null;
+  }
 }

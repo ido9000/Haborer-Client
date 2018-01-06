@@ -1,9 +1,30 @@
-<div class="login">
-  <p>שם משתמש: </p>
-  <input type="text" (input)="userName = $event.target.value">
-  <p>סיסמא: </p>
-  <input type="password" (input)="password = $event.target.value">
-  <br>
-  <br>
-  <button (click)="login()">התחבר</button>
+<body dir="rtl">
+<div class="claa" *ngIf=!this.checkSessionActive()>
+
+  <h3>התחברות</h3>
+  <h5>*יש למלא את כל השדות כראוי</h5>
+
+  <form #addUserForm="ngForm">
+    <label for="userName">שם משתמש</label>
+    <input required type="text" id="userName" name="userName" placeholder="שם משתמש.." [(ngModel)]="userName">
+
+    <label for="password">סיסמא</label>
+    <input required type="password" id="password" name="password" placeholder="סיסמא.." [(ngModel)]="password">
+
+
+
+
+
+    <button (click)="login()" [disabled]="addUserForm.form.invalid">התחבר</button>
+    <label>{{this.message}}</label>
+  </form>
 </div>
+
+<div class="claa" *ngIf=this.checkSessionActive()>
+  <h3>הנך מחובר כבר למערכת</h3>
+  <button (click)="this.logout()" >לחץ כאן להתנתק</button>
+
+</div>
+</body>
+
+
