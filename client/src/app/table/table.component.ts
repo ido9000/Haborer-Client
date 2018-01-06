@@ -33,8 +33,6 @@ export class TableComponent implements OnInit {
         });
       }
     );
-
-
   }
 
   ngOnInit() {  }
@@ -62,6 +60,7 @@ export class TableComponent implements OnInit {
     // let newRequestsFactory = new requestsFactory(this.currentUser.squadron,item.squadron, this.fDate,this.tDate,this.comments,this.chosenItems);
     let newRequestsFactory = new requestsFactory(this.currentUser.squadron,this.currentStore, this.fDate,this.tDate,this.comments,this.chosenItems);
     this.httpService.postNewRequests(newRequestsFactory);
+    alert('הבקשה נשלחה');
   }
 
   saveItemCount(item){
@@ -69,18 +68,36 @@ export class TableComponent implements OnInit {
   }
 
   deleteItem(item){
-    const index: number = this.orderedItems.indexOf(item);
-    if(item.itemMakat){
-      this.httpService.postCancelMakatItem(item);
-    } else {
-      this.httpService.postCancelCountItem(item);
-    }
+    if(confirm('למחוק את הבקשה?')) {
+      const index: number = this.orderedItems.indexOf(item);
+      if (item.itemMakat) {
+        this.httpService.postCancelMakatItem(item);
+      } else {
+        this.httpService.postCancelCountItem(item);
+      }
 
-    this.orderedItems.splice(index,1);
+      this.orderedItems.splice(index, 1);
+    }
   }
 
   checkSessionActiveForSession(){
     return JSON.parse(localStorage.getItem("user"))!=null;
+  }
+
+  checkIfThisIsUsersStore(){
+    if(this.currentUser){
+      if(this.currentUser.squadron==this.currentStore) {
+        return true;
+      } else if(this.currentUser.squadron!=this.currentStore) {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  checkIfOthersStore(){
+
   }
 
 }

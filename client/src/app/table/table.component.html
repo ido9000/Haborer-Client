@@ -1,23 +1,23 @@
-<table *ngIf="checkSessionActiveForSession()">
+<table>
 
   <tr>
-    <th *ngIf="currentUser.squadron!=this.currentStore">הזמן</th>
-    <th *ngIf="currentUser.squadron!=this.currentStore">כמות להזמנה</th>
+    <th *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">הזמן</th>
+    <th *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">כמות להזמנה</th>
     <th>שם מוצר</th>
     <th>קטגוריה</th>
     <th>תאריך הוספה</th>
     <th>מק"ט</th>
     <th>כמות</th>
-    <th *ngIf="currentUser.squadron==this.currentStore">מחיקה</th>
+    <th *ngIf="checkSessionActiveForSession() && checkIfThisIsUsersStore()">מחיקה</th>
   </tr>
 
   <tr *ngFor="let i of orderedItems">
 
-    <td *ngIf="currentUser.squadron!=this.currentStore">
+    <td *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">
       <input type="checkbox" value="{{i._id}}" (change)="clickOnCheck(i)">
     </td>
 
-    <td  *ngIf="currentUser.squadron!=this.currentStore">
+    <td  *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">
       <select *ngIf="i.itemCount>0" name="itemCount">
         <option *ngFor="let n of getArrayOfNumbers(i.itemCount)" value="{{n}}">{{n}}
         </option>
@@ -29,13 +29,13 @@
     <td>{{i.dateAdded|date:'dd/MM/yyyy'}}</td>
     <td>{{i.itemMakat}}</td>
 
-    <td *ngIf="currentUser.squadron!=this.currentStore">{{i.itemCount}}</td>
-    <td *ngIf="currentUser.squadron==this.currentStore">
+    <td *ngIf="!checkSessionActiveForSession() || !checkIfThisIsUsersStore()">{{i.itemCount}}</td>
+    <td *ngIf="checkSessionActiveForSession() && checkIfThisIsUsersStore()">
       <input type="number" *ngIf="!i.itemMakat" [value]="i.itemCount" min="0" required (input)="i.itemCount = $event.target.value">
       <button *ngIf="!i.itemMakat" (click)="saveItemCount(i)">שמור</button>
     </td>
 
-    <td *ngIf="currentUser.squadron==this.currentStore">
+    <td *ngIf="checkSessionActiveForSession() && checkIfThisIsUsersStore()">
       <button (click)="deleteItem(i)">X</button>
     </td>
   </tr>
@@ -43,7 +43,7 @@
 </table>
 
 <br>
-<div *ngIf="checkSessionActiveForSession() && currentUser.squadron!=this.currentStore">
+<div *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">
 
   <div class="moveRight" >
 
@@ -57,5 +57,5 @@
     <textarea class="comments" type="text" (input)="comments = $event.target.value"></textarea>
   </div>
 
-<button class="moveRight" *ngIf="currentUser.squadron!=this.currentStore" (click)="createNewRequest()">שלח בקשה</button>
+<button class="moveRight" *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()" (click)="createNewRequest()">שלח בקשה</button>
 </div>
