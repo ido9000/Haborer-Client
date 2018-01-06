@@ -33,8 +33,6 @@ export class TableComponent implements OnInit {
         });
       }
     );
-
-
   }
 
   ngOnInit() {  }
@@ -81,6 +79,22 @@ export class TableComponent implements OnInit {
 
   checkSessionActiveForSession(){
     return JSON.parse(localStorage.getItem("user"))!=null;
+  }
+
+  checkIfThisIsUsersStore(){
+    if(this.currentUser){
+      if(this.currentUser.squadron==this.currentStore) {
+        return true;
+      } else if(this.currentUser.squadron!=this.currentStore) {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  checkIfOthersStore(){
+
   }
 
 }
