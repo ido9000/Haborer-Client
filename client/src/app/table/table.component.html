@@ -14,7 +14,7 @@
   <tr *ngFor="let i of orderedItems">
 
     <td *ngIf="currentUser.squadron=='store1'">
-      <input type="checkbox" name="vehicle" value="i._id">
+      <input type="checkbox" value="{{i._id}}" (change)="clickOnCheck(i)">
     </td>
 
     <td  *ngIf="currentUser.squadron=='store1'">
@@ -28,14 +28,18 @@
     <td>{{i.itemCategory}}</td>
     <td>{{i.dateAdded|date:'dd/MM/yyyy'}}</td>
     <td>{{i.itemMakat}}</td>
-    <td>{{i.itemCount}}</td>
+
+
+    <td *ngIf="currentUser.squadron=='store1'">{{i.itemCount}}</td>
 
     <td *ngIf="currentUser.squadron!='store1'">
-      <input type="number" [value]="i.itemCount" min="0" required *ngIf="i.itemCount==0">
+      <input type="number" *ngIf="!i.itemMakat" [value]="i.itemCount" min="0" required (input)="i.itemCount = $event.target.value">
+      <button *ngIf="!i.itemMakat" (click)="saveItemCount(i)">שמור</button>
     </td>
 
+
     <td *ngIf="currentUser.squadron!='store1'">
-      <button>X</button>
+      <button (click)="deleteItem(i)">X</button>
     </td>
 
   </tr>
@@ -46,14 +50,13 @@
 <div class="moveRight" *ngIf="currentUser.squadron=='store1'">
 
   <p>תאריך איסוף</p>
-  <input type="date">
+  <input type="date" (input)="fDate = $event.target.value">
 
   <p>תאריך החזרה</p>
-  <input type="date">
+  <input type="date" (input)="tDate = $event.target.value">
 
   <p>הערות</p>
-  <textarea class="comments" type="text"></textarea>
+  <textarea class="comments" type="text" (input)="comments = $event.target.value"></textarea>
 </div>
 
-<!--<br>-->
-<input class="moveRight" type="submit" value="Submit" ><!--(click)="createNewRequest()">-->
+<button class="moveRight" *ngIf="currentUser.squadron=='store1'" (click)="createNewRequest()">שלח בקשה</button>
