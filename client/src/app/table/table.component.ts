@@ -9,7 +9,7 @@ import {Request} from "../request-to-others/request-to-others.component";
 })
 export class TableComponent implements OnInit {
 
-  currentUser: userModule = new dummyUser("store1");
+  currentUser: userModule = new dummyUser("156");
   currentStore = "155";
   items: any;
   orderedItems:itemModule[];

@@ -8,7 +8,7 @@ import {HttpService} from "../http.service";
 })
 export class RequestToOthersComponent implements OnInit {
 
-  currentUser: userModule = new dummyUser("store1");
+  currentUser: userModule = new dummyUser("155");
   requests : any;
   requestsFromMe : string[];
   commentRespondModule="";

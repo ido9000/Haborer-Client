@@ -7,6 +7,7 @@ import {RequestToOthersComponent} from "../request-to-others/request-to-others.c
 import {MyRequestsTableComponent} from "../my-requests-table/my-requests-table.component";
 import {WelcomeMessageComponent} from "../welcome-message/welcome-message.component";
 import {AddItemComponent} from "../add-item/add-item.component";
+import {LoginComponent} from "../login/login.component";
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: DashboardComponent, /*TODO: change after users will work*/
+    component: LoginComponent, /*TODO: change after users will work*/
   },
 ];
 

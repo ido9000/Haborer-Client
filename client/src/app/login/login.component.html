@@ -1,0 +1,9 @@
+<div class="login">
+  <p>שם משתמש: </p>
+  <input type="text" (input)="userName = $event.target.value">
+  <p>סיסמא: </p>
+  <input type="password" (input)="password = $event.target.value">
+  <br>
+  <br>
+  <button (click)="login()">התחבר</button>
+</div>

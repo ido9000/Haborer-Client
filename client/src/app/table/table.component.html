@@ -1,23 +1,23 @@
 <table>
 
   <tr>
-    <th *ngIf="currentUser.squadron=='store1'">הזמן</th>
-    <th *ngIf="currentUser.squadron=='store1'">כמות להזמנה</th>
+    <th *ngIf="currentUser.squadron=='155'">הזמן</th>
+    <th *ngIf="currentUser.squadron=='155'">כמות להזמנה</th>
     <th>שם מוצר</th>
     <th>קטגוריה</th>
     <th>תאריך הוספה</th>
     <th>מק"ט</th>
     <th>כמות</th>
-    <th *ngIf="currentUser.squadron!='store1'">מחיקה</th>
+    <th *ngIf="currentUser.squadron!='155'">מחיקה</th>
   </tr>
 
   <tr *ngFor="let i of orderedItems">
 
-    <td *ngIf="currentUser.squadron=='store1'">
+    <td *ngIf="currentUser.squadron=='155'">
       <input type="checkbox" value="{{i._id}}" (change)="clickOnCheck(i)">
     </td>
 
-    <td  *ngIf="currentUser.squadron=='store1'">
+    <td  *ngIf="currentUser.squadron=='155'">
       <select *ngIf="i.itemCount>0" name="itemCount">
         <option *ngFor="let n of getArrayOfNumbers(i.itemCount)" value="{{n}}">{{n}}
         </option>
@@ -30,15 +30,15 @@
     <td>{{i.itemMakat}}</td>
 
 
-    <td *ngIf="currentUser.squadron=='store1'">{{i.itemCount}}</td>
+    <td *ngIf="currentUser.squadron=='155'">{{i.itemCount}}</td>
 
-    <td *ngIf="currentUser.squadron!='store1'">
+    <td *ngIf="currentUser.squadron!='155'">
       <input type="number" *ngIf="!i.itemMakat" [value]="i.itemCount" min="0" required (input)="i.itemCount = $event.target.value">
       <button *ngIf="!i.itemMakat" (click)="saveItemCount(i)">שמור</button>
     </td>
 
 
-    <td *ngIf="currentUser.squadron!='store1'">
+    <td *ngIf="currentUser.squadron!='155'">
       <button (click)="deleteItem(i)">X</button>
     </td>
 
@@ -47,7 +47,7 @@
 </table>
 
 <br>
-<div class="moveRight" *ngIf="currentUser.squadron=='store1'">
+<div class="moveRight" *ngIf="currentUser.squadron=='155'">
 
   <p>תאריך איסוף</p>
   <input type="date" (input)="fDate = $event.target.value">
@@ -59,4 +59,5 @@
   <textarea class="comments" type="text" (input)="comments = $event.target.value"></textarea>
 </div>
 
-<button class="moveRight" *ngIf="currentUser.squadron=='store1'" (click)="createNewRequest()">שלח בקשה</button>
+<button class="moveRight" *ngIf="currentUser.squadron=='155'" (click)="createNewRequest()">שלח בקשה</button>
+
