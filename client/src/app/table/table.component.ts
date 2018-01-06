@@ -22,15 +22,18 @@ export class TableComponent implements OnInit {
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
 
     this.route.params.subscribe(
-      params => this.currentStore = params['store']
+      params => {this.currentStore = params['store'];
+
+        this.currentUser=JSON.parse(localStorage.getItem("user"));
+        this.currentStore=localStorage.getItem("storeToShow");
+        this.orderedItems=[];
+        this.items = httpService.getStoreContent(this.currentStore);
+        this.items.subscribe(items => {
+          this.orderedItems = items;
+        });
+      }
     );
-    this.currentUser=JSON.parse(localStorage.getItem("user"));
-    this.currentStore=localStorage.getItem("storeToShow");
-    this.orderedItems=[];
-    this.items = httpService.getStoreContent(this.currentStore);
-    this.items.subscribe(items => {
-      this.orderedItems = items;
-    });
+
 
   }
 
