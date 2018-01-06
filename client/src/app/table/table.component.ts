@@ -69,11 +69,14 @@ export class TableComponent implements OnInit {
   }
 
   deleteItem(item){
+    const index: number = this.orderedItems.indexOf(item);
     if(item.itemMakat){
       this.httpService.postCancelMakatItem(item);
     } else {
       this.httpService.postCancelCountItem(item);
     }
+
+    this.orderedItems.splice(index,1);
   }
 
   checkSessionActiveForSession(){
