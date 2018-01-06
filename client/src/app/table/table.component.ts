@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
-import {Request} from "../request-to-others/request-to-others.component";
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-table',
@@ -9,7 +10,7 @@ import {Request} from "../request-to-others/request-to-others.component";
 })
 export class TableComponent implements OnInit {
 
-  currentUser: userModule ;
+  currentUser: userModule;
   currentStore :string;
   items: any;
   orderedItems:itemModule[];
@@ -18,8 +19,11 @@ export class TableComponent implements OnInit {
   comments;
   chosenItems=[];
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private route: ActivatedRoute) {
 
+    this.route.params.subscribe(
+      params => this.currentStore = params['store']
+    );
     this.currentUser=JSON.parse(localStorage.getItem("user"));
     this.currentStore=localStorage.getItem("storeToShow");
     this.orderedItems=[];
@@ -68,6 +72,7 @@ export class TableComponent implements OnInit {
       this.httpService.postCancelCountItem(item);
     }
   }
+
   checkSessionActiveForSession(){
     return JSON.parse(localStorage.getItem("user"))!=null;
   }

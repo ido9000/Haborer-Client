@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   userName:string;
   password:string;
@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
+
   login():void{
     this.message=" ";
     this.respone= this.httpService.checkLogin(this.userName,this.password);
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
     });
 
   }
+
   update(user){
     if(this.user==null){
       this.message="פרטי התחברות שגויים";
@@ -38,9 +40,11 @@ export class DashboardComponent implements OnInit {
 
     }
   }
+
   logout(){
     localStorage.setItem("user",null);
   }
+
   checkSessionActive(){
     return JSON.parse(localStorage.getItem("user"))!=null;
   }
