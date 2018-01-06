@@ -65,6 +65,7 @@ export class TableComponent implements OnInit {
 
   saveItemCount(item){
     this.httpService.postEditItem(item);
+    alert('העדכון נשמר');
   }
 
   deleteItem(item){
