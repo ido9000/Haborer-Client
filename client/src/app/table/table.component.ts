@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
-import {Request} from "../request-to-others/request-to-others.component";
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-table',
@@ -18,8 +19,11 @@ export class TableComponent implements OnInit {
   comments;
   chosenItems=[];
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private route: ActivatedRoute) {
 
+    this.route.params.subscribe(
+      params => this.currentStore = params['store']
+    );
     this.currentUser=JSON.parse(localStorage.getItem("user"));
     this.currentStore=localStorage.getItem("storeToShow");
     this.orderedItems=[];

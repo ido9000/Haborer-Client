@@ -14,7 +14,7 @@ const routes: Routes = [
     component: WelcomeMessageComponent,
   },
   {
-    path: 'table',
+    path: 'table/:store',
     component: TableComponent,
   },
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent, /*TODO: change after users will work*/
+    component: LoginComponent,
   },
 ];
 

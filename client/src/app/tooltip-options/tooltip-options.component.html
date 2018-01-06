@@ -1,4 +1,4 @@
-<div *ngFor="let s of storesArr" class="tooltipOption" (click)="showStore(s)" routerLink="table"> <!--TODO:fix!-->
+<div *ngFor="let s of storesArr" class="tooltipOption" (click)="showStore(s)" [class.selected]="s === store">
   {{s}}
 </div>
 
