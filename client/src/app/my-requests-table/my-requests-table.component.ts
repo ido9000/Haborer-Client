@@ -8,13 +8,14 @@ import {HttpService} from "../http.service";
 })
 export class MyRequestsTableComponent implements OnInit {
 
-  currentUser: userModule = new dummyUser("155");
+  currentUser: userModule;
   requests : any;
   requestsFromMe : string[];
   commentRespondModule="";
 
   constructor(private httpService: HttpService) {
     this.requestsFromMe=[];
+    this.currentUser=JSON.parse(localStorage.getItem("user"));
     this.requests = httpService.getAllMyRequests(this.currentUser.squadron);
     this.requests.subscribe(requests => {
       console.log(requests);
@@ -67,17 +68,4 @@ export class Request implements requestModule{
 }
 
 
-//dummy data
-export class dummyUser implements userModule {
-  squadron: string;
-  userName:string;
-  password:string;
-  _id:string;
-  firstName:string;
-  lastName:string;
 
-  constructor(squadron){
-    this.squadron =squadron;
-
-  }
-}

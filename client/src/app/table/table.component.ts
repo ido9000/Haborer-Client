@@ -9,8 +9,8 @@ import {Request} from "../request-to-others/request-to-others.component";
 })
 export class TableComponent implements OnInit {
 
-  currentUser: userModule = new dummyUser("156");
-  currentStore = "155";
+  currentUser: userModule ;
+  currentStore :string;
   items: any;
   orderedItems:itemModule[];
   fDate;
@@ -19,8 +19,11 @@ export class TableComponent implements OnInit {
   chosenItems=[];
 
   constructor(private httpService: HttpService) {
+
+    this.currentUser=JSON.parse(localStorage.getItem("user"));
+    this.currentStore=localStorage.getItem("storeToShow");
     this.orderedItems=[];
-    this.items = httpService.getStoreContent(this.currentUser.squadron);
+    this.items = httpService.getStoreContent(this.currentStore);
     this.items.subscribe(items => {
       this.orderedItems = items;
     });
@@ -50,7 +53,7 @@ export class TableComponent implements OnInit {
 
   createNewRequest(item){
     // let newRequestsFactory = new requestsFactory(this.currentUser.squadron,item.squadron, this.fDate,this.tDate,this.comments,this.chosenItems);
-    let newRequestsFactory = new requestsFactory(this.currentStore,this.currentStore, this.fDate,this.tDate,this.comments,this.chosenItems);
+    let newRequestsFactory = new requestsFactory(this.currentUser.squadron,this.currentStore, this.fDate,this.tDate,this.comments,this.chosenItems);
     this.httpService.postNewRequests(newRequestsFactory);
   }
 
@@ -64,6 +67,9 @@ export class TableComponent implements OnInit {
     } else {
       this.httpService.postCancelCountItem(item);
     }
+  }
+  checkSessionActiveForSession(){
+    return JSON.parse(localStorage.getItem("user"))!=null;
   }
 
 }
@@ -88,18 +94,3 @@ export class requestsFactory implements requestsFactoryModule{
 }
 
 
-
-//dummy data
-export class dummyUser implements userModule {
-  squadron: string;
-  userName:string;
-  password:string;
-  _id:string;
-  firstName:string;
-  lastName:string;
-
-  constructor(squadron){
-    this.squadron =squadron;
-
-  }
-}
