@@ -27,7 +27,7 @@ export class TooltipOptionsComponent implements OnInit {
 
   showStore(s) {
     const x= s.split(" ");
-    //this.body.setStore(x[1]);
+    localStorage.setItem("storeToShow",x[1]);
   }
 
 

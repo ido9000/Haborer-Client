@@ -8,10 +8,10 @@
     </span>
   </button>
 
-  <button type="button" class="button" routerLink="addNewItem">הוספת מוצרים חדשים
+  <button type="button" class="button" routerLink="addNewItem" [disabled]="!this.checkSessionActivated()">הוספת מוצרים חדשים
   </button>
-  <button type="button" class="button" routerLink="toOthersRequest">ההזמנות שביצעתי</button>
-  <button type="button" class="button" routerLink="fromOthersRequest">הזמנות ממני</button>
+  <button type="button" class="button" routerLink="toOthersRequest" [disabled]="!this.checkSessionActivated()">ההזמנות שביצעתי</button>
+  <button type="button" class="button" routerLink="fromOthersRequest" [disabled]="!this.checkSessionActivated()">הזמנות ממני</button>
   <button type="button" class="button" routerLink="login">התחברות</button>
 </div>
 
