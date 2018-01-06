@@ -57,5 +57,5 @@
     <textarea class="comments" type="text" (input)="comments = $event.target.value"></textarea>
   </div>
 
-<button class="moveRight" *ngIf="currentUser.squadron!=this.currentStore" (click)="createNewRequest()" onClick="alert('YOUR MESSAGE GOES HERE')">שלח בקשה</button>
+<button class="moveRight" *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()" (click)="createNewRequest()">שלח בקשה</button>
 </div>
