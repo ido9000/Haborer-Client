@@ -4,6 +4,8 @@ table {
   width: 77%;
   margin-left: 20px;
   margin-top: 20px;
+  height: 70%;
+  /*position:scroll ;*/
 }
 
 td, th {
