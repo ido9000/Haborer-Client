@@ -26,11 +26,12 @@ input[type=submit]:hover {
 .claa{
   width:70%;
   float:left;
+  margin-left: 50px;
 }
 div {
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  /*padding: 20px;*/
 }
 input[type="radio"]:checked ~ .reveal-if-active,
 input[type="checkbox"]:checked ~ .reveal-if-active {
