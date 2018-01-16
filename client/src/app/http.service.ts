@@ -19,11 +19,11 @@ export class HttpService {
     return this.http.get<itemModule[]>(this.config.serverAddress.concat('UserService/Squadron/').concat(storeId));
   }
 
-  getAllMyRequests(storeId) {
+  getOthersRequstFromMe(storeId) {
     return this.http.get<requestModule>(this.config.serverAddress.concat('UserService/Squadron/Requests/From/').concat(storeId));
   }
 
-  getOthersRequstFromMe(storeId) {
+  getAllMyRequests(storeId) {
     return this.http.get<requestModule>(this.config.serverAddress.concat('UserService/Squadron/Requests/To/').concat(storeId));
 
   }

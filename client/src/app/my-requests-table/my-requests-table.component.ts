@@ -16,9 +16,8 @@ export class MyRequestsTableComponent implements OnInit {
   constructor(private httpService: HttpService) {
     this.requestsFromMe=[];
     this.currentUser=JSON.parse(localStorage.getItem("user"));
-    this.requests = httpService.getAllMyRequests(this.currentUser.squadron);
+    this.requests = httpService.getOthersRequstFromMe(this.currentUser.squadron);
     this.requests.subscribe(requests => {
-      console.log(requests);
       this.requestsFromMe = requests;
     });
   }
@@ -34,7 +33,8 @@ export class MyRequestsTableComponent implements OnInit {
 
   checkStatus(request){
     let pending=true;
-    if(request.status=="APPROVED" || request.status=="DECLINED"){
+    if(request.status=="APPROVED" || request.status=="DECLINED" || request.status=="CANCELD" || request.status=="TAKEN" ||
+    request.status=="RETURNED"){
       pending=false;
     }
     return pending;

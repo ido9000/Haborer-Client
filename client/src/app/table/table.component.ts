@@ -58,7 +58,7 @@ export class TableComponent implements OnInit {
 
   createNewRequest(item){
     // let newRequestsFactory = new requestsFactory(this.currentUser.squadron,item.squadron, this.fDate,this.tDate,this.comments,this.chosenItems);
-    let newRequestsFactory = new requestsFactory(this.currentUser.squadron,this.currentStore, this.fDate,this.tDate,this.comments,this.chosenItems);
+    let newRequestsFactory = new requestsFactory(this.currentStore,this.currentUser.squadron, this.fDate,this.tDate,this.comments,this.chosenItems);
     this.httpService.postNewRequests(newRequestsFactory);
     alert('הבקשה נשלחה');
   }

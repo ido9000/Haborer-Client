@@ -29,6 +29,7 @@ export class RequestToOthersComponent implements OnInit {
     oldRequest.status=newStatus;
     let newRequest = new Request(oldRequest._id,newStatus,oldRequest.fromSquadron,oldRequest.toSquadron,
       oldRequest.fDate,oldRequest.tDate,oldRequest.comments,oldRequest.item,this.commentRespondModule);
+    console.log(newRequest);
     this.httpService.postEditRequest(newRequest);
   }
 
