@@ -18,7 +18,6 @@ export class MyRequestsTableComponent implements OnInit {
     this.currentUser=JSON.parse(localStorage.getItem("user"));
     this.requests = httpService.getOthersRequstFromMe(this.currentUser.squadron);
     this.requests.subscribe(requests => {
-      console.log(requests);
       this.requestsFromMe = requests;
     });
   }
