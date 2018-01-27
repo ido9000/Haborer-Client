@@ -73,6 +73,7 @@ export class item implements itemModule{
   squadron: string;
   itemMakat: string;
   itemCount: string;
+  taken:boolean;
 
    constructor(itemName,itemCategory,itemMakat,itemCount,squadron) {
      this.itemName=itemName;

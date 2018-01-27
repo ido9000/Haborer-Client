@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
  import {HttpModule} from '@angular/http';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -21,6 +22,7 @@ import { RequestToOthersComponent } from './request-to-others/request-to-others.
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,10 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule
+
   ],
   providers: [HttpService], //, BodyStates],
   bootstrap: [AppComponent]

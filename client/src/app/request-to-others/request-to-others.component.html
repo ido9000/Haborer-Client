@@ -1,17 +1,25 @@
-<table *ngIf="checkSessionActiveForSession()">
-
+<div class="container">
+  <div class="row">
+    <nav class="navbar" dir="rtl">
+      <p>חיפוש לפי טייסת וסטטוס</p>
+      <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+      <p>*לחץ על הכותרות על מנת למיין לפי סדר עולה ויורד</p>
+    </nav>
+<table class="table" *ngIf="checkSessionActiveForSession()">
+<thead>
   <tr>
     <th>הגב</th>
-    <th>סטטוס</th>
-    <th>אל איזו מחלקה</th>
-    <th>מתאריך</th>
-    <th>עד תאריך</th>
+    <th (click)="sort('status')">סטטוס</th>
+    <th (click)="sort('fromSquadron')">אל איזו טייסת</th>
+    <th (click)="sort('fDate')">מתאריך</th>
+    <th (click)="sort('tDate')">עד תאריך</th>
     <th>הערות המבקש</th>
-    <th>מוצרים</th>
+    <th >מוצרים</th>
     <th>הערות נותן השירות</th>
   </tr>
-
-  <tr *ngFor="let i of requestsFromMe">
+</thead>
+  <tbody>
+  <tr *ngFor="let i of requestsFromMe  | orderBy: key : reverse| filter:filter| paginate: { itemsPerPage: 10, currentPage: p };">
 
     <td>
       <button [disabled]="!checkStatusForCancel(i)" (click)="doAction(i, 'CANCELD')">בטל</button>
@@ -21,8 +29,8 @@
 
     <td>{{i.status}}</td>
     <td>{{i.fromSquadron}}</td>
-    <td>{{i.fDate|date:'dd/MM/yyyy'}}</td>
-    <td>{{i.tDate|date:'dd/MM/yyyy'}}</td>
+    <td>{{i.fDate|date:'medium'}}</td>
+    <td>{{i.tDate|date:'medium'}}</td>
     <td>
       <input class="comments" type="text" value="{{i.comments}}" (input)="commentRespondModule = $event.target.value" [disabled]="!checkStatusComments(i)">
     </td>
@@ -33,6 +41,10 @@
 
 
   </tr>
+  </tbody>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 </table>
 
+  </div>
+</div>

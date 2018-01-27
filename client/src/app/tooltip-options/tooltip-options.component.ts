@@ -29,7 +29,7 @@ export class TooltipOptionsComponent implements OnInit {
 
   showStore(s) {
     const x= s.split(" ");
-    let storeName = x[1];
+    let storeName = x[0];
     localStorage.setItem("storeToShow",storeName);
     this.store = storeName;
     this._router.navigate(["table", storeName]);

@@ -18,6 +18,15 @@ export class TableComponent implements OnInit {
   tDate;
   comments;
   chosenItems=[];
+  countItems=[];
+  p: number = 1;
+
+  key: string = 'status'; //set default
+  reverse: boolean = false;
+  sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
 
@@ -57,19 +66,46 @@ export class TableComponent implements OnInit {
   }
 
   createNewRequest(item){
-    // let newRequestsFactory = new requestsFactory(this.currentUser.squadron,item.squadron, this.fDate,this.tDate,this.comments,this.chosenItems);
-    let newRequestsFactory = new requestsFactory(this.currentStore,this.currentUser.squadron, this.fDate,this.tDate,this.comments,this.chosenItems);
-    this.httpService.postNewRequests(newRequestsFactory);
-    alert('הבקשה נשלחה');
-  }
+    if(this.fDate==null || this.tDate==null){
+      alert('מלא תאריכים')
+    }
+    else if(this.fDate>this.tDate){
+      alert('תאריך החזרה חייב להיות גדול מתאריך קבלה')
+    }
 
+    else if(this.chosenItems.length==0){
+      alert('לא נבחרו מוצרים')
+    }
+    else {
+      this.fDate = this.fDate.split("T")[0] + " " + this.fDate.split("T")[1];
+      this.tDate = this.tDate.split("T")[0] + " " + this.tDate.split("T")[1];
+      for(let item of this.countItems){
+        for(let chosenItem of this.chosenItems){
+          if(item._id==chosenItem._id){
+
+            chosenItem.itemCount=item.itemCount;
+
+          }
+        }
+      }
+      let newRequestsFactory = new requestsFactory(this.currentStore, this.currentUser.squadron, this.fDate, this.tDate, this.comments, this.chosenItems);
+      this.httpService.postNewRequests(newRequestsFactory);
+      alert('הבקשה נשלחה');
+
+    }
+  }
+  editCount(i,value){
+    let item=Object.assign({}, i);
+    item.itemCount=value
+    this.countItems.push(item);
+  }
   saveItemCount(item){
     this.httpService.postEditItem(item);
     alert('העדכון נשמר');
   }
 
   deleteItem(item){
-    if(confirm('למחוק את הבקשה?')) {
+    if(confirm('למחוק את המוצר?')) {
       const index: number = this.orderedItems.indexOf(item);
       if (item.itemMakat) {
         this.httpService.postCancelMakatItem(item);

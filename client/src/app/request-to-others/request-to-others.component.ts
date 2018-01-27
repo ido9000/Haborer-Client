@@ -12,6 +12,14 @@ export class RequestToOthersComponent implements OnInit {
   requests : any;
   requestsFromMe : string[];
   commentRespondModule="";
+  p: number = 1;
+
+  key: string = 'status'; //set default
+  reverse: boolean = false;
+  sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 
   constructor(private httpService: HttpService) {
     this.currentUser=JSON.parse(localStorage.getItem("user"));

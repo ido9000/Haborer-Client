@@ -1,8 +1,8 @@
 <div class="sideNav">
   <title-bar class="topImage"></title-bar>
-  <button type="button" class="menuButton">תפריט</button>
+  <label class="label">תפריט</label>
 
-  <button type="button" class="button tooltip">בחר מחלקה
+  <button type="button" class="button tooltip">בחר טייסת
     <span class="tooltiptext">
       <tooltip-options></tooltip-options>
     </span>
@@ -10,8 +10,8 @@
 
   <button type="button" class="button" routerLink="addNewItem"  *ngIf="this.checkSessionActivated()">הוספת מוצרים חדשים
   </button>
-  <button type="button" class="button" routerLink="toOthersRequest"  *ngIf="this.checkSessionActivated()">ההזמנות שביצעתי</button>
-  <button type="button" class="button" routerLink="fromOthersRequest"  *ngIf="this.checkSessionActivated()">הזמנות ממני</button>
+  <button type="button" class="button" routerLink="toOthersRequest"  *ngIf="this.checkSessionActivated()">הזמנות שביצעתי מטייסות</button>
+  <button type="button" class="button" routerLink="fromOthersRequest"  *ngIf="this.checkSessionActivated()">הזמנות שבוצעו ממני</button>
   <button type="button" class="button"  *ngIf="!this.checkSessionActivated()" routerLink="login">התחברות</button>
   <button type="button" class="button"  *ngIf="this.checkSessionActivated()" routerLink="login">התנתקות</button>
 

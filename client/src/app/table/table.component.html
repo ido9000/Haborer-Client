@@ -1,24 +1,32 @@
-<table class="searchable sortable">
-
+<div class="container">
+  <div class="row">
+    <nav class="navbar" dir="rtl">
+      <p>חיפוש לפי שם,קטגוריה ומק"ט</p>
+      <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+      <p>*לחץ על הכותרות על מנת למיין לפי סדר עולה ויורד</p>
+    </nav>
+<table class="table">
+<thead>
   <tr>
     <th *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">הזמן</th>
     <th *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">כמות להזמנה</th>
-    <th>שם מוצר</th>
-    <th>קטגוריה</th>
-    <th>תאריך הוספה</th>
-    <th>מק"ט</th>
-    <th>כמות</th>
+    <th (click)="sort('itemName')">שם מוצר</th>
+    <th (click)="sort('itemCategory')">קטגוריה</th>
+    <th (click)="sort('date')">תאריך הוספה </th>
+    <th  >מק"ט</th>
+    <th >כמות</th>
     <th *ngIf="checkSessionActiveForSession() && checkIfThisIsUsersStore()">מחיקה</th>
   </tr>
+</thead>
+  <tbody>
+  <tr *ngFor="let i of orderedItems | orderBy: key : reverse| filter:filter| paginate: { itemsPerPage: 10, currentPage: p };">
 
-  <tr *ngFor="let i of orderedItems">
-
-    <td *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">
+    <td *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore() && !i.taken">
       <input type="checkbox" value="{{i._id}}" (change)="clickOnCheck(i)">
     </td>
 
     <td  *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">
-      <select *ngIf="i.itemCount>0" name="itemCount">
+      <select *ngIf="i.itemCount>0" name="itemCount" (change)="editCount(i,$event.target.value)">
         <option *ngFor="let n of getArrayOfNumbers(i.itemCount)" value="{{n}}">{{n}}
         </option>
       </select>
@@ -29,33 +37,39 @@
     <td>{{i.dateAdded|date:'dd/MM/yyyy'}}</td>
     <td>{{i.itemMakat}}</td>
 
-    <td *ngIf="!checkSessionActiveForSession() || !checkIfThisIsUsersStore()">{{i.itemCount}}</td>
-    <td *ngIf="checkSessionActiveForSession() && checkIfThisIsUsersStore()">
+    <td *ngIf="(!checkSessionActiveForSession() || !checkIfThisIsUsersStore()) || (checkSessionActiveForSession() && checkIfThisIsUsersStore() && i.taken)">{{i.itemCount}}</td>
+    <td *ngIf="checkSessionActiveForSession() && checkIfThisIsUsersStore() && !i.taken" >
       <input type="number" *ngIf="!i.itemMakat" [value]="i.itemCount" min="0" required (input)="i.itemCount = $event.target.value">
       <button *ngIf="!i.itemMakat" (click)="saveItemCount(i)">שמור</button>
     </td>
 
     <td *ngIf="checkSessionActiveForSession() && checkIfThisIsUsersStore()">
-      <button (click)="deleteItem(i)">X</button>
+      <button (click)="deleteItem(i)" *ngIf=!i.taken>X</button>
     </td>
   </tr>
+  </tbody>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 </table>
-
+  </div>
+</div>
 <br>
+
 <div *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()">
 
   <div class="moveRight" >
 
     <p>תאריך איסוף</p>
-    <input type="date" (input)="fDate = $event.target.value">
+    <input required type="datetime-local"  (input)="fDate = $event.target.value">
 
     <p>תאריך החזרה</p>
-    <input type="date" (input)="tDate = $event.target.value">
+    <input required type="datetime-local"  (input)="tDate = $event.target.value">
 
     <p>הערות</p>
     <textarea class="comments" type="text" (input)="comments = $event.target.value"></textarea>
-  </div>
 
-<button class="moveRight" *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()" (click)="createNewRequest()">שלח בקשה</button>
+
+<button class="moveRight"  *ngIf="checkSessionActiveForSession() && !checkIfThisIsUsersStore()  " (click)="createNewRequest()">שלח בקשה</button>
+  </div>
 </div>
+
